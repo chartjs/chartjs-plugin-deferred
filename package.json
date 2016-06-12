@@ -1,0 +1,23 @@
+{
+  "name": "chart.deferred.js",
+  "homepage": "http://www.chartjs.org",
+  "description": "Chart.js plugin to defer initial animation.",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "src/plugin.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chartjs/Chart.Deferred.js.git"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-insert": "^0.5.0",
+    "gulp-replace": "^0.5.4",
+    "gulp-rename": "^1.2.2",
+    "gulp-streamify": "^1.0.2",
+    "gulp-uglify": "^1.5.3",
+    "gulp-util": "^3.0.7",
+    "path": "^0.12.7",
+    "yargs": "^4.7.1"
+  }
+}
