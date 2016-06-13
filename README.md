@@ -1,8 +1,14 @@
 # Chart.Deferred.js
 
+[![Build Status](https://travis-ci.org/chartjs/Chart.Deferred.js.svg?branch=master)](https://travis-ci.org/chartjs/Chart.Deferred.js)
+
 A [Chart.js](http://www.chartjs.org/) plugin to defer the initial chart update until the user scrolls and the canvas appears inside the viewport. The main intent of Chart.Deferred.js is to trigger the initial chart animations when the user is likely to see them.
 
 Requires Chart.js **2.1.5** or later.
+
+## Usage
+
+You can download the latest version of [Chart.Deferred.js on GitHub](https://github.com/chartjs/Chart.Deferred.js/releases/latest)
 
 ## Configuration
 

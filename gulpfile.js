@@ -23,7 +23,7 @@ var header = "/*!\n\
  */\n";
 
 gulp.task('build', buildTask);
-gulp.task('default', buildTask);
+gulp.task('default', ['build']);
 
 function watch(glob, task) {
     gutil.log('Waiting for changes...');
