@@ -1,6 +1,6 @@
 # Chart.Deferred.js
 
-[![Build Status](https://travis-ci.org/chartjs/Chart.Deferred.js.svg?branch=master)](https://travis-ci.org/chartjs/Chart.Deferred.js)
+[![Build Status](https://travis-ci.org/chartjs/Chart.Deferred.js.svg?branch=master)](https://travis-ci.org/chartjs/Chart.Deferred.js) [![Code Climate](https://codeclimate.com/github/chartjs/Chart.Deferred.js/badges/gpa.svg)](https://codeclimate.com/github/chartjs/Chart.Deferred.js)
 
 A [Chart.js](http://www.chartjs.org/) plugin to defer the initial chart update until the user scrolls and the canvas appears inside the viewport. The main intent of Chart.Deferred.js is to trigger the initial chart animations when the user is likely to see them.
 
@@ -44,6 +44,7 @@ The following commands are available from the repository root (requires [Node.js
 > npm install           // initialize node dependencies
 > gulp build            // build dist files
 > gulp build --watch    // build and watch for changes
+> gulp lint             // perform code linting
 ```
 
 ## License

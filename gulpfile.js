@@ -1,5 +1,6 @@
 var argv = require('yargs').argv
 var gulp = require('gulp');
+var eslint = require('gulp-eslint');
 var insert = require('gulp-insert');
 var rename = require('gulp-rename');
 var replace = require('gulp-replace');
@@ -23,14 +24,16 @@ var header = "/*!\n\
  */\n";
 
 gulp.task('build', buildTask);
+gulp.task('lint', lintTask);
 gulp.task('default', ['build']);
 
 function watch(glob, task) {
     gutil.log('Waiting for changes...');
     return gulp.watch(glob, function(e) {
       gutil.log('Changes detected for', path.relative('.', e.path), '(' + e.type + ')');
-      task();
+      var r = task();
       gutil.log('Waiting for changes...');
+      return r;
     });
 }
 
@@ -51,4 +54,12 @@ function buildTask() {
   } else {
     return task();
   }
+}
+
+function lintTask() {
+  var files = [srcDir + '**/*.js'];
+  return gulp.src(files)
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
 }

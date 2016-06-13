@@ -4,6 +4,7 @@ node_js:
 
 script:
 - gulp build
+- gulp lint
 
 deploy:
   provider: releases
