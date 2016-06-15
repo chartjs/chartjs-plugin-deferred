@@ -7,11 +7,14 @@ var replace = require('gulp-replace');
 var streamify = require('gulp-streamify');
 var uglify = require('gulp-uglify');
 var gutil = require('gulp-util');
+var zip = require('gulp-zip');
+var merge = require('merge2');
 var path = require('path');
 var package = require('./package.json');
 
 var srcDir = './src/';
 var outDir = './dist/';
+var samplesDir = './samples/';
 
 var header = "/*!\n\
  * Chart.Deferred.js\n\
@@ -25,6 +28,7 @@ var header = "/*!\n\
 
 gulp.task('build', buildTask);
 gulp.task('lint', lintTask);
+gulp.task('package', packageTask);
 gulp.task('default', ['build']);
 
 function watch(glob, task) {
@@ -57,9 +61,28 @@ function buildTask() {
 }
 
 function lintTask() {
-  var files = [srcDir + '**/*.js'];
+  var files = [
+    srcDir + '**/*.js',
+    samplesDir + '**/*.js'
+  ];
+
   return gulp.src(files)
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
+}
+
+function packageTask() {
+  return merge(
+      // gather "regular" files landing in the package root
+      gulp.src([outDir + '*.js', 'LICENSE.md']),
+
+      // dist files in the package are in the root, so we need to rewrite samples
+      // src="../dist/ to src="../ and then copy them in the /samples directory.
+      gulp.src(samplesDir + '**/*', { base: '.' })
+        .pipe(streamify(replace('src="../dist/', 'src="../')))
+  )
+  // finally, create the zip archive
+  .pipe(zip('Chart.Deferred.js.zip'))
+  .pipe(gulp.dest(outDir));
 }

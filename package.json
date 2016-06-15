@@ -18,6 +18,8 @@
     "gulp-streamify": "^1.0.2",
     "gulp-uglify": "^1.5.3",
     "gulp-util": "^3.0.7",
+    "gulp-zip": "^3.2.0",
+    "merge2": "^1.0.2",
     "path": "^0.12.7",
     "yargs": "^4.7.1"
   }

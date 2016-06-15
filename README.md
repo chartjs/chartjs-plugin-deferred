@@ -38,13 +38,19 @@ Note that default options will defer the chart loading until the first line of p
 
 ## Development
 
-The following commands are available from the repository root (requires [Node.js](https://nodejs.org/))
+You first need to install node dependencies (requires [Node.js](https://nodejs.org/)):
 
 ```shell
-> npm install           // initialize node dependencies
+> npm install
+```
+
+The following commands will then be available from the repository root:
+
+```shell
 > gulp build            // build dist files
 > gulp build --watch    // build and watch for changes
 > gulp lint             // perform code linting
+> gulp package          // create an archive with dist files and samples
 ```
 
 ## License
