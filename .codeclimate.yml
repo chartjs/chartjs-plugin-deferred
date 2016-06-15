@@ -12,5 +12,6 @@ engines:
     enabled: true
 ratings:
   paths:
+  - "samples/**/*.js"
   - "src/**/*.js"
 exclude_paths: []

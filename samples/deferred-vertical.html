@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Vertical Scrolling Example | Chart.Deferred.js</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.5/Chart.bundle.min.js"></script>
+		<script src="../dist/Chart.Deferred.min.js"></script>
+		<script src="utils.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<style>
+			body {
+				overflow-x: hidden;
+				overflow-y: scroll;
+			}
+			#wrapper {
+				width: 100%;
+				top: 100%;
+				position: absolute;
+				margin-top: -144px;
+			}
+			#wrapper > div {
+				margin: 0 auto;
+				vertical-align: middle;
+			}
+			#wrapper .head,
+			#wrapper .foot {
+				text-align: center;
+				padding-bottom: 128px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="start"></div>
+		<div id="header">
+			<h1>Chart.Deferred.js</h1>
+			<h2><b>Vertical</b> Scrolling Example</h2>
+			<a class="btn" href="index.html"><i class="fa fa-chevron-left"></i></a>
+			<a class="btn btn-style_1" href="https://github.com/chartjs/Chart.Deferred.js#configuration"><i class="fa fa-book"></i> Documentation</a>
+		</div>
+		<div id="wrapper">
+			<div class="head">Scroll down <i class="fa fa-chevron-circle-down"></i></div>
+			<div class="chart"><code id="config_0"></code><canvas id="canvas_0" height="320" width="512"></canvas></div>
+			<div class="chart"><code id="config_1"></code><canvas id="canvas_1" height="320" width="512"></canvas></div>
+			<div class="chart"><code id="config_2"></code><canvas id="canvas_2" height="320" width="512"></canvas></div>
+			<div class="chart"><code id="config_3"></code><canvas id="canvas_3" height="320" width="512"></canvas></div>
+			<div class="chart"><code id="config_4"></code><canvas id="canvas_4" height="320" width="512"></canvas></div>
+			<div class="foot"><a class="button" href="#start" onclick="restart()"> <i class="fa fa-refresh"></i> Restart</a></div>
+		</div>
+
+		<script>
+			var configs = [
+				{ deferred: false },
+				{ deferred: { enabled: true }},
+				{ deferred: { yOffset: 100 }},
+				{ deferred: { delay: 500 }},
+				{ deferred: { yOffset: '50%', delay: 250 }}
+			];
+
+			window.onload = function() {
+				var options = Samples.utils.defaultBarOptions();
+				var data = Samples.utils.generateBarData();
+				for (i = 0, ilen = configs.length; i<ilen; ++i) {
+					var text = document.getElementById("config_" + i);
+					var canvas = document.getElementById("canvas_" + i);
+
+					text.textContent = 'options: ' + JSON.stringify(configs[i], null, ' ');
+
+					new Chart(canvas.getContext("2d"), {
+						type: [ 'bar' ][i%1],
+						options: Chart.helpers.extend(options, configs[i]),
+						data: data
+					});
+				}
+			};
+
+			function restart() {
+				setTimeout(function() {
+					location.reload();
+				});
+			}
+		</script>
+	</body>
+</html>

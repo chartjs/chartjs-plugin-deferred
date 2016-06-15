@@ -1,0 +1,147 @@
+html, body {
+	color: #aaa;
+	font-family: Arial, sans-serif;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+code, .btn, #wrapper > .sample {
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.btn, #wrapper > .sample {
+	-webkit-transition: background-color 0.25s ease-in;
+	-o-transition: background-color 0.25s ease-in;
+	transition: background-color 0.25s ease-in;
+}
+
+a {
+	color: #4BC0C0;
+	text-decoration: none;
+}
+
+code {
+	display: inline-block;
+	background-color: #f7f7f7;
+	border: 1px solid #f0f0f0;
+	color: #555;
+	padding: 10px 20px;
+	margin: 16px;
+}
+
+canvas {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+
+.btn {
+	background-color: #f0f0f0;
+	color: #505050;
+	display: inline-block;
+	padding: 2px 8px 2px 6px;
+}
+
+.btn:hover { background-color: #e0e0e0 }
+
+.btn-style_1 { background-color: #36A2EB; color: white; }
+.btn-style_2 { background-color: #4BC0C0; color: white; }
+.btn-style_3 { background-color: #808080; color: white; }
+
+.btn-style_1:hover { background-color: #2B81BC }
+.btn-style_2:hover { background-color: #3C9999 }
+.btn-style_3:hover { background-color: #505050 }
+
+
+#header {
+	background-color: #fcfcfc;
+	background-image: url('http://www.chartjs.org/img/chartjs-logo.svg');
+	background-repeat: no-repeat;
+	background-position: 16px center;
+	background-size: auto 88px;
+	border-bottom: 4px solid #f5f5f5;
+	line-height: 1.4;
+	padding: 16px 16px 16px 120px;
+	position: fixed;
+	width: 100%;
+	z-index: 999;
+}
+
+#header h1,
+#header h2 {
+	margin: 0;
+}
+
+#header h1 {
+	color: #888;
+	font-size: 1.4em;
+	font-weight: bold;
+}
+
+#header h2 {
+	font-size: 1em;
+	font-weight: normal;
+	margin-bottom: 4px;
+}
+
+#header a {
+	font-size: 0.9em;
+}
+
+#wrapper {
+	position: absolute;
+}
+
+#wrapper > .head {
+	color: #ccc;
+	font-size: 1.4em;
+	text-align: right;
+	text-transform: uppercase;
+}
+
+#wrapper > .chart {
+	min-width: 512px;
+	max-width: 512px;
+	padding: 64px 96px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#wrapper > .foot {
+	padding: 64px;
+	color: #aaf;
+	font-size: 1.4em;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+#wrapper > .sample {
+	display: inline-block;
+	background-color: #f8f8f8;
+	margin: 0 16px 16px 0;
+	padding-right: 16px;
+	width: 256px;
+}
+
+#wrapper > .sample:hover {
+	background-color: #f0f0f0;
+}
+
+#wrapper > .sample > div {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#wrapper > .sample > .fa {
+	border-right: 1px dotted #e0e0e0;
+	display: inline-block;
+	font-size: 4em;
+	margin-right: 16px;
+	padding: 16px;
+}
+
+
