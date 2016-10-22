@@ -1,6 +1,6 @@
-var Samples = Samples || {};
+var Samples = window.Samples || {};
 Samples.utils = {
-	defaultBarOptions: function(){
+	defaultBarOptions: function() {
 		return {
 			responsive: false,
 			legend: {
@@ -21,7 +21,7 @@ Samples.utils = {
 		var i, j;
 
 		for (i=0; i<ilen; ++i) {
-			dataset = { data: [], backgroundColor: [], label: 'DS' + i };
+			dataset = {data: [], backgroundColor: [], label: 'DS' + i};
 			for (j=0; j<jlen; ++j) {
 				dataset.data.push(Math.round(Math.random() * 100));
 				dataset.backgroundColor.push(

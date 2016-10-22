@@ -1,5 +1,5 @@
-/*global window: false */
-"use strict";
+/* global window: false */
+'use strict';
 
 (function() {
 
@@ -41,9 +41,8 @@
 			return 0;
 		} else if (typeof value === 'string' && value.indexOf('%') !== -1) {
 			return number / 100 * base;
-		} else {
-			return number;
 		}
+		return number;
 	}
 
 	function chartInViewport(instance) {
@@ -74,7 +73,7 @@
 			options = {};
 		} else if (typeof options === 'boolean') {
 			// accepting { options: { deferred: true } }
-			options = { enabled: options };
+			options = {enabled: options};
 		}
 
 		return {
@@ -105,7 +104,7 @@
 			for (i=0; i<ilen; ++i) {
 				instance = instances[i];
 				if (chartInViewport(instance)) {
-					unwatch(instance);
+					unwatch(instance); // eslint-disable-line
 					instance[MODEL_KEY].appeared = true;
 					instance.update();
 				}
@@ -137,7 +136,7 @@
 				stub = parent[STUB_KEY] || (parent[STUB_KEY] = {});
 				instances = stub.instances || (stub.instances = []);
 				if (instances.length === 0) {
-					parent.addEventListener('scroll', onScroll, { passive: true });
+					parent.addEventListener('scroll', onScroll, {passive: true});
 				}
 
 				instances.push(instance);
@@ -204,4 +203,4 @@
 		}
 	});
 
-})();
+}());
