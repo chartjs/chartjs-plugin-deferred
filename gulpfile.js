@@ -2,6 +2,7 @@ var argv = require('yargs').argv
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
 var insert = require('gulp-insert');
+var file = require('gulp-file');
 var rename = require('gulp-rename');
 var replace = require('gulp-replace');
 var streamify = require('gulp-streamify');
@@ -29,6 +30,7 @@ var header = "/*!\n\
 gulp.task('build', buildTask);
 gulp.task('lint', lintTask);
 gulp.task('package', packageTask);
+gulp.task('bower', bowerTask);
 gulp.task('default', ['build']);
 
 function watch(glob, task) {
@@ -85,4 +87,18 @@ function packageTask() {
   // finally, create the zip archive
   .pipe(zip('Chart.Deferred.js.zip'))
   .pipe(gulp.dest(outDir));
+}
+
+function bowerTask() {
+  var json = JSON.stringify({
+      name: package.name,
+      description: package.description,
+      homepage: package.homepage,
+      license: package.license,
+      version: package.version,
+      main: outDir + "Chart.Deferred.js"
+    }, null, 2);
+
+  return file('bower.json', json, { src: true })
+    .pipe(gulp.dest('./'));
 }

@@ -6,11 +6,21 @@ script:
 - gulp lint
 - gulp build
 - gulp package
+- gulp bower
 
 deploy:
-  provider: releases
-  api_key:
-    secure: ejOLLIcHVw+MEUFVoCeQIHD4CuHSMeG7CJ1PGH74BPSzK2t5crBkCchhO9G4lRjrra3fI7O/8iz9EQknLLXEqWah5oi/jy2hpsD+7etfxyL0KBw9JBpbBM/Klc3M200KaWUvcSZIO4rsuObAPQV0OWkVFvZiA3EIVEerkXR3ms1JHueD9qXWuRniiNoalSedfVrOmlj6yqA+D2tdLDcj4AcLOO86oGNVcc5zeTFXljtuxpwedcQS4kcarwQC4arROQx7XNdPgiO7egGZej31/DoTB4PYV70M0UtDztvj1JYz53thgElX6w6c6lF41HHAMoGhP6Rpiw0TiF9a37GCivzD7aKUSek+ekP+DxV6HdOgaLlsBk8Ryw9p3GQ9p/shYjCRxjSRduQoxgSYnf10yS8j9m3moDvuY4//uchu9pvMTeTIXkRx1z913isyIaa8GM9SHxiIPYBOKIltLcq3g2/s0WUsyBC8bSY1I8DRLmZn2HOEgJBkI3kWmO8zL1Y3ZtRAg/pAN84h2DeM52toFC0Pw8MZ0YedVOWa3k1HpQddi7x4pvvG4c9S/BHwGOnr3O2O3ahL24pNB4QNrqvp770fd9GDgjmXbHpsw8FNOSYCd9eoi7FWSWgc6CkQI8VuYThXV8D7K+70WxZfbBLQBSM8M6sSres661k39RwoKro=
+# Creates a tag containing dist files and bower.json
+# Requires GITHUB_AUTH_TOKEN and GITHUB_AUTH_EMAIL environment variables
+# IMPORTANT: the script has to be set executable in the Git repository (error 127)
+# https://github.com/travis-ci/travis-ci/issues/5538#issuecomment-225025939
+# http://stackoverflow.com/a/15572639
+- provider: script
+  script: ./scripts/release.sh
+  skip_cleanup: true
+  on:
+    branch: release
+- provider: releases
+  api_key: $GITHUB_AUTH_TOKEN
   file:
   - "./dist/Chart.Deferred.js"
   - "./dist/Chart.Deferred.min.js"
