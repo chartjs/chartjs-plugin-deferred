@@ -18,13 +18,13 @@ var outDir = './dist/';
 var samplesDir = './samples/';
 
 var header = "/*!\n\
- * Chart.Deferred.js\n\
+ * chartjs-plugin-deferred\n\
  * http://chartjs.org/\n\
  * Version: {{ version }}\n\
  *\n\
  * Copyright 2016 Simon Brunel\n\
  * Released under the MIT license\n\
- * https://github.com/chartjs/Chart.Deferred.js/blob/master/LICENSE.md\n\
+ * https://github.com/chartjs/chartjs-plugin-deferred/blob/master/LICENSE.md\n\
  */\n";
 
 gulp.task('build', buildTask);
@@ -45,12 +45,12 @@ function watch(glob, task) {
 
 function buildTask() {
   var task = function() {
-    return gulp.src(srcDir + 'chart.deferred.js')
-      .pipe(rename('Chart.Deferred.js'))
+    return gulp.src(srcDir + 'plugin.js')
+      .pipe(rename(package.name + '.js'))
       .pipe(insert.prepend(header))
       .pipe(streamify(replace('{{ version }}', package.version)))
       .pipe(gulp.dest(outDir))
-      .pipe(rename('Chart.Deferred.min.js'))
+      .pipe(rename(package.name + '.min.js'))
       .pipe(streamify(uglify({ preserveComments: 'license' })))
       .pipe(gulp.dest(outDir));
   };
@@ -85,7 +85,7 @@ function packageTask() {
         .pipe(streamify(replace('src="../dist/', 'src="../')))
   )
   // finally, create the zip archive
-  .pipe(zip('Chart.Deferred.js.zip'))
+  .pipe(zip(package.name + '.zip'))
   .pipe(gulp.dest(outDir));
 }
 
@@ -96,7 +96,7 @@ function bowerTask() {
       homepage: package.homepage,
       license: package.license,
       version: package.version,
-      main: outDir + "Chart.Deferred.js"
+      main: outDir + package.name + '.js'
     }, null, 2);
 
   return file('bower.json', json, { src: true })

@@ -1,13 +1,13 @@
 {
-  "name": "chart.deferred.js",
+  "name": "chartjs-plugin-deferred",
   "homepage": "http://www.chartjs.org",
-  "description": "Chart.js plugin to defer initial animation.",
+  "description": "Chart.js plugin to defer initial chart updates",
   "version": "0.1.0",
   "license": "MIT",
   "main": "src/plugin.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chartjs/Chart.Deferred.js.git"
+    "url": "https://github.com/chartjs/chartjs-plugin-deferred.git"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
