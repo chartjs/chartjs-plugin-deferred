@@ -1,6 +1,6 @@
 # Defer initial chart updates
 
-[![Build Status](https://travis-ci.org/chartjs/chartjs-plugin-deferred.svg?branch=master)](https://travis-ci.org/chartjs/chartjs-plugin-deferred) [![Code Climate](https://codeclimate.com/github/chartjs/chartjs-plugin-deferred/badges/gpa.svg)](https://codeclimate.com/github/chartjs/chartjs-plugin-deferred)
+[![npm](https://img.shields.io/npm/v/chartjs-plugin-deferred.svg?style=flat-square)](https://npmjs.com/package/chartjs-plugin-deferred) [![Bower](https://img.shields.io/bower/v/chartjs-plugin-deferred.svg?style=flat-square)](https://libraries.io/bower/chartjs-plugin-deferred) [![Travis](https://img.shields.io/travis/chartjs/chartjs-plugin-deferred.svg?style=flat-square)](https://travis-ci.org/chartjs/chartjs-plugin-deferred) [![Code Climate](https://img.shields.io/codeclimate/github/chartjs/chartjs-plugin-deferred.svg?style=flat-square)](https://codeclimate.com/github/chartjs/chartjs-plugin-deferred)
 
 [Chart.js](http://www.chartjs.org/) plugin to defer initial chart updates until the user scrolls and the canvas appears inside the viewport, and thus trigger the initial chart animations when the user is likely to see them.
 
