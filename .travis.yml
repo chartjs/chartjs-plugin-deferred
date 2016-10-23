@@ -28,3 +28,9 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
+- provider: npm
+  email: $NPM_AUTH_EMAIL
+  api_key: $NPM_AUTH_TOKEN
+  skip_cleanup: true
+  on:
+    tags: true
