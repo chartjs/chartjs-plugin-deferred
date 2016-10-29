@@ -7,7 +7,7 @@ engines:
       - javascript
   eslint:
     enabled: true
-    channel: "eslint-2"
+    channel: "eslint-3"
   fixme:
     enabled: true
 ratings:

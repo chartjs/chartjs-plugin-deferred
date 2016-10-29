@@ -18,7 +18,7 @@ var outDir = './dist/';
 var samplesDir = './samples/';
 
 var header = "/*!\n\
- * chartjs-plugin-deferred\n\
+ * " + package.name + "\n\
  * http://chartjs.org/\n\
  * Version: {{ version }}\n\
  *\n\
