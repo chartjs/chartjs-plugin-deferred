@@ -7,12 +7,12 @@ var rename = require('gulp-rename');
 var replace = require('gulp-replace');
 var streamify = require('gulp-streamify');
 var uglify = require('gulp-uglify');
+var umd = require('gulp-umd');
 var gutil = require('gulp-util');
 var zip = require('gulp-zip');
 var merge = require('merge2');
 var path = require('path');
 var package = require('./package.json');
-var umd = require('gulp-umd');
 
 var srcDir = './src/';
 var outDir = './dist/';
@@ -49,15 +49,13 @@ function buildTask() {
     return gulp.src(srcDir + 'plugin.js')
       .pipe(umd({
         dependencies: function(file) {
-          return [
-            {
-              name: 'chart.js',
-              amd: 'chart.js',
-              cjs: 'chart.js',
-              global: 'Chart',
-              param: 'ChartJS'
-            }
-          ];
+          return [{
+            name: 'chart.js',
+            amd: 'chart.js',
+            cjs: 'chart.js',
+            global: 'Chart',
+            param: 'Chart'
+          }];
         }
       }))
       .pipe(rename(package.name + '.js'))
