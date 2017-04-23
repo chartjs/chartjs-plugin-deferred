@@ -12,6 +12,7 @@ var zip = require('gulp-zip');
 var merge = require('merge2');
 var path = require('path');
 var package = require('./package.json');
+var umd = require('gulp-umd');
 
 var srcDir = './src/';
 var outDir = './dist/';
@@ -46,6 +47,19 @@ function watch(glob, task) {
 function buildTask() {
   var task = function() {
     return gulp.src(srcDir + 'plugin.js')
+      .pipe(umd({
+        dependencies: function(file) {
+          return [
+            {
+              name: 'chart.js',
+              amd: 'chart.js',
+              cjs: 'chart.js',
+              global: 'Chart',
+              param: 'ChartJS'
+            }
+          ];
+        }
+      }))
       .pipe(rename(package.name + '.js'))
       .pipe(insert.prepend(header))
       .pipe(streamify(replace('{{ version }}', package.version)))
