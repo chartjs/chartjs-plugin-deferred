@@ -7,6 +7,7 @@ var rename = require('gulp-rename');
 var replace = require('gulp-replace');
 var streamify = require('gulp-streamify');
 var uglify = require('gulp-uglify');
+var umd = require('gulp-umd');
 var gutil = require('gulp-util');
 var zip = require('gulp-zip');
 var merge = require('merge2');
@@ -46,6 +47,17 @@ function watch(glob, task) {
 function buildTask() {
   var task = function() {
     return gulp.src(srcDir + 'plugin.js')
+      .pipe(umd({
+        dependencies: function(file) {
+          return [{
+            name: 'chart.js',
+            amd: 'chart.js',
+            cjs: 'chart.js',
+            global: 'Chart',
+            param: 'Chart'
+          }];
+        }
+      }))
       .pipe(rename(package.name + '.js'))
       .pipe(insert.prepend(header))
       .pipe(streamify(replace('{{ version }}', package.version)))

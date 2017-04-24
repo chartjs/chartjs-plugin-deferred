@@ -1,9 +1,7 @@
-/* global window: false */
+/* global window: false, Chart */
 'use strict';
 
-(function() {
-
-	var Chart = window.Chart;
+(function(Chart) {
 	var helpers = Chart.helpers;
 	var STUB_KEY = '_chartjs_deferred';
 	var MODEL_KEY = '_deferred_model';
@@ -202,5 +200,4 @@
 			}
 		}
 	});
-
-}());
+}(Chart || window.Chart));
