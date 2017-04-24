@@ -1,4 +1,4 @@
-/* global window: false */
+/* global window: false, Chart */
 'use strict';
 
 (function(Chart) {
