@@ -4,7 +4,7 @@
   "description": "Chart.js plugin to defer initial chart updates",
   "version": "0.2.0",
   "license": "MIT",
-  "main": "src/plugin.js",
+  "main": "dist/chartjs-plugin-deferred.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/chartjs/chartjs-plugin-deferred.git"
@@ -12,16 +12,21 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-eslint": "^3.0.0",
-    "gulp-insert": "^0.5.0",
     "gulp-file": "^0.3.0",
-    "gulp-replace": "^0.5.4",
     "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
     "gulp-streamify": "^1.0.2",
     "gulp-uglify": "^1.5.3",
     "gulp-util": "^3.0.7",
     "gulp-zip": "^3.2.0",
     "merge2": "^1.0.2",
     "path": "^0.12.7",
+    "rollup": "^0.41.6",
+    "rollup-stream": "^1.19.0",
+    "vinyl-source-stream": "^1.1.0",
     "yargs": "^4.7.1"
+  },
+  "peerDependencies": {
+    "chart.js": ">= 2.5.0 < 3"
   }
 }

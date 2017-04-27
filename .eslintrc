@@ -2,11 +2,12 @@ ecmaFeatures:
   modules: true
   jsx: true
 
+parserOptions:
+  sourceType: module
+
 env:
-  amd: true
   browser: true
   es6: true
-  jquery: true
   node: true
 
 # http://eslint.org/docs/rules/

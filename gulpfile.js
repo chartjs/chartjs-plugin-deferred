@@ -3,7 +3,6 @@
 var argv = require('yargs').argv;
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
-var insert = require('gulp-insert');
 var file = require('gulp-file');
 var rename = require('gulp-rename');
 var replace = require('gulp-replace');
@@ -13,21 +12,13 @@ var gutil = require('gulp-util');
 var zip = require('gulp-zip');
 var merge = require('merge2');
 var path = require('path');
+var rollup = require('rollup-stream');
+var source = require('vinyl-source-stream');
 var pkg = require('./package.json');
 
 var srcDir = './src/';
 var outDir = './dist/';
 var samplesDir = './samples/';
-
-var header = `/*!
- * ` + pkg.name + `
- * http://chartjs.org/
- * Version: {{ version }}
- *
- * Copyright 2017 Simon Brunel
- * Released under the MIT license
- * https://github.com/chartjs/chartjs-plugin-deferred/blob/master/LICENSE.md
- */`;
 
 function watch(glob, task) {
 	gutil.log('Waiting for changes...');
@@ -43,10 +34,8 @@ gulp.task('default', ['build']);
 
 gulp.task('build', function() {
 	var task = function() {
-		return gulp.src(srcDir + 'plugin.js')
-			.pipe(rename(pkg.name + '.js'))
-			.pipe(insert.prepend(header))
-			.pipe(streamify(replace('{{ version }}', pkg.version)))
+		return rollup('rollup.config.js')
+			.pipe(source(pkg.name + '.js'))
 			.pipe(gulp.dest(outDir))
 			.pipe(rename(pkg.name + '.min.js'))
 			.pipe(streamify(uglify({preserveComments: 'license'})))

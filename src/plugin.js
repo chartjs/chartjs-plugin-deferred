@@ -1,9 +1,8 @@
-/* global window: false */
 'use strict';
 
-(function() {
+import Chart from 'chart.js';
 
-	var Chart = window.Chart;
+(function() {
 	var helpers = Chart.helpers;
 	var STUB_KEY = '_chartjs_deferred';
 	var MODEL_KEY = '_deferred_model';
