@@ -49,7 +49,7 @@ import Chart from 'chart.js';
 		var canvas = instance.chart.canvas;
 
 		// http://stackoverflow.com/a/21696585
-		if (canvas.offsetParent === null) {
+		if (!canvas || canvas.offsetParent === null) {
 			return false;
 		}
 
@@ -199,6 +199,10 @@ import Chart from 'chart.js';
 				// as interacting with the legend label, or direct calls to update()
 				return false;
 			}
+		},
+
+		destroy: function(chart) {
+			unwatch(chart);
 		}
 	});
 
