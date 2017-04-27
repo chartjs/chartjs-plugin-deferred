@@ -1,4 +1,6 @@
-var argv = require('yargs').argv
+'use strict';
+
+var argv = require('yargs').argv;
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
 var insert = require('gulp-insert');
@@ -11,94 +13,92 @@ var gutil = require('gulp-util');
 var zip = require('gulp-zip');
 var merge = require('merge2');
 var path = require('path');
-var package = require('./package.json');
+var pkg = require('./package.json');
 
 var srcDir = './src/';
 var outDir = './dist/';
 var samplesDir = './samples/';
 
-var header = "/*!\n\
- * " + package.name + "\n\
- * http://chartjs.org/\n\
- * Version: {{ version }}\n\
- *\n\
- * Copyright 2016 Simon Brunel\n\
- * Released under the MIT license\n\
- * https://github.com/chartjs/chartjs-plugin-deferred/blob/master/LICENSE.md\n\
- */\n";
-
-gulp.task('build', buildTask);
-gulp.task('lint', lintTask);
-gulp.task('package', packageTask);
-gulp.task('bower', bowerTask);
-gulp.task('default', ['build']);
+var header = `/*!
+ * ` + pkg.name + `
+ * http://chartjs.org/
+ * Version: {{ version }}
+ *
+ * Copyright 2017 Simon Brunel
+ * Released under the MIT license
+ * https://github.com/chartjs/chartjs-plugin-deferred/blob/master/LICENSE.md
+ */`;
 
 function watch(glob, task) {
-    gutil.log('Waiting for changes...');
-    return gulp.watch(glob, function(e) {
-      gutil.log('Changes detected for', path.relative('.', e.path), '(' + e.type + ')');
-      var r = task();
-      gutil.log('Waiting for changes...');
-      return r;
-    });
+	gutil.log('Waiting for changes...');
+	return gulp.watch(glob, function(e) {
+		gutil.log('Changes detected for', path.relative('.', e.path), '(' + e.type + ')');
+		var r = task();
+		gutil.log('Waiting for changes...');
+		return r;
+	});
 }
 
-function buildTask() {
-  var task = function() {
-    return gulp.src(srcDir + 'plugin.js')
-      .pipe(rename(package.name + '.js'))
-      .pipe(insert.prepend(header))
-      .pipe(streamify(replace('{{ version }}', package.version)))
-      .pipe(gulp.dest(outDir))
-      .pipe(rename(package.name + '.min.js'))
-      .pipe(streamify(uglify({ preserveComments: 'license' })))
-      .pipe(gulp.dest(outDir));
-  };
+gulp.task('default', ['build']);
 
-  if (argv.watch) {
-    return task(), watch(srcDir + '**/*.js', task);
-  } else {
-    return task();
-  }
-}
+gulp.task('build', function() {
+	var task = function() {
+		return gulp.src(srcDir + 'plugin.js')
+			.pipe(rename(pkg.name + '.js'))
+			.pipe(insert.prepend(header))
+			.pipe(streamify(replace('{{ version }}', pkg.version)))
+			.pipe(gulp.dest(outDir))
+			.pipe(rename(pkg.name + '.min.js'))
+			.pipe(streamify(uglify({preserveComments: 'license'})))
+			.pipe(gulp.dest(outDir));
+	};
 
-function lintTask() {
-  var files = [
-    srcDir + '**/*.js',
-    samplesDir + '**/*.js'
-  ];
+	var tasks = [task()];
+	if (argv.watch) {
+		tasks.push(watch(srcDir + '**/*.js', task));
+	}
 
-  return gulp.src(files)
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
-}
+	return tasks;
+});
 
-function packageTask() {
-  return merge(
-      // gather "regular" files landing in the package root
-      gulp.src([outDir + '*.js', 'LICENSE.md']),
+gulp.task('lint', function() {
+	var files = [
+		samplesDir + '**/*.js',
+		srcDir + '**/*.js',
+		'*.js'
+	];
 
-      // dist files in the package are in the root, so we need to rewrite samples
-      // src="../dist/ to src="../ and then copy them in the /samples directory.
-      gulp.src(samplesDir + '**/*', { base: '.' })
-        .pipe(streamify(replace('src="../dist/', 'src="../')))
-  )
-  // finally, create the zip archive
-  .pipe(zip(package.name + '.zip'))
-  .pipe(gulp.dest(outDir));
-}
+	return gulp.src(files)
+		.pipe(eslint())
+		.pipe(eslint.format())
+		.pipe(eslint.failAfterError());
+});
 
-function bowerTask() {
-  var json = JSON.stringify({
-      name: package.name,
-      description: package.description,
-      homepage: package.homepage,
-      license: package.license,
-      version: package.version,
-      main: outDir + package.name + '.js'
-    }, null, 2);
+gulp.task('package', function() {
+	return merge(
+		// gather "regular" files landing in the package root
+		gulp.src([outDir + '*.js', 'LICENSE.md']),
 
-  return file('bower.json', json, { src: true })
-    .pipe(gulp.dest('./'));
-}
+		// dist files in the package are in the root, so we need to rewrite samples
+		// src="../dist/ to src="../ and then copy them in the /samples directory.
+		gulp.src(samplesDir + '**/*', {base: '.'})
+			.pipe(streamify(replace('src="../dist/', 'src="../')))
+	)
+	// finally, create the zip archive
+	.pipe(zip(pkg.name + '.zip'))
+	.pipe(gulp.dest(outDir));
+});
+
+gulp.task('bower', function() {
+	var json = JSON.stringify({
+		name: pkg.name,
+		description: pkg.description,
+		homepage: pkg.homepage,
+		license: pkg.license,
+		version: pkg.version,
+		main: outDir + pkg.name + '.js'
+	}, null, 2);
+
+	return file('bower.json', json, {src: true})
+		.pipe(gulp.dest('./'));
+});
