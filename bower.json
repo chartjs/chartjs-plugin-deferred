@@ -1,0 +1,8 @@
+{
+  "name": "chartjs-plugin-deferred",
+  "description": "Chart.js plugin to defer initial chart updates",
+  "homepage": "http://www.chartjs.org",
+  "license": "MIT",
+  "version": "0.3.0",
+  "main": "./dist/chartjs-plugin-deferred.js"
+}
