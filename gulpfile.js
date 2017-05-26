@@ -38,7 +38,7 @@ gulp.task('build', function() {
 			.pipe(source(pkg.name + '.js'))
 			.pipe(gulp.dest(outDir))
 			.pipe(rename(pkg.name + '.min.js'))
-			.pipe(streamify(uglify({preserveComments: 'license'})))
+			.pipe(streamify(uglify({output: {comments: 'some'}})))
 			.pipe(gulp.dest(outDir));
 	};
 
