@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>Horizontal Scrolling Example | chartjs-plugin-deferred</title>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.5/Chart.bundle.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
 		<script src="../dist/chartjs-plugin-deferred.min.js"></script>
 		<script src="utils.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
@@ -61,17 +61,18 @@
 			];
 
 			window.onload = function() {
-				var options = Samples.utils.defaultBarOptions();
 				var data = Samples.utils.generateBarData();
 				for (i = 0, ilen = configs.length; i<ilen; ++i) {
 					var text = document.getElementById("config_" + i);
 					var canvas = document.getElementById("canvas_" + i);
+					var options = Samples.utils.defaultBarOptions();
 
 					text.textContent = 'options: ' + JSON.stringify(configs[i], null, ' ');
+					options.plugins = configs[i];
 
 					new Chart(canvas.getContext("2d"), {
 						type: [ 'bar' ][i%1],
-						options: Chart.helpers.extend(options, configs[i]),
+						options: options,
 						data: data
 					});
 				}

@@ -4,7 +4,7 @@
 
 [Chart.js](http://www.chartjs.org/) plugin to defer initial chart updates until the user scrolls and the canvas appears inside the viewport, and thus trigger the initial chart animations when the user is likely to see them.
 
-Requires [Chart.js](/chartjs/Chart.js/releases) **2.1.5** or later.
+Requires [Chart.js](https://github.com/chartjs/Chart.js/releases) **2.6.0** or later.
 
 ## Usage
 
@@ -16,25 +16,26 @@ To configure this plugin, you can simply add the following entries to your chart
 
 | Name | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
-| `deferred` | `Object/Boolean` | `true` | The deferred options (see `deferred.*` options). Also accepts a boolean, in which case if `true`, the chart will be deferred using the default options, else if `false`, the chart will not be deferred.
-| `deferred.enabled` | `Boolean` | `true` | `true` to enable this plugin, else `false` to disable it for the associated chart.
-| `deferred.xOffset` | `Number/String` | `0` | Number of pixels (or percent of the canvas width) from which the chart is considered inside the viewport.
-| `deferred.yOffset` | `Number/String` | `0` | Number of pixels (or percent of the canvas height) from which the chart is considered inside the viewport.
-| `deferred.delay` | `Number` | `0` | Number of milliseconds to delay the loading after the chart is considered inside the viewport.
+| `plugins.deferred` | `Object/Boolean` | `true` | The deferred options (see `plugins.deferred.*` options). Also accepts a boolean, in which case if `true`, the chart will be deferred using the **global options**, else if `false`, the chart will not be deferred.
+| `plugins.deferred.xOffset` | `Number/String` | `0` | Number of pixels (or percent of the canvas width) from which the chart is considered inside the viewport.
+| `plugins.deferred.yOffset` | `Number/String` | `0` | Number of pixels (or percent of the canvas height) from which the chart is considered inside the viewport.
+| `plugins.deferred.delay` | `Number` | `0` | Number of milliseconds to delay the loading after the chart is considered inside the viewport.
+
+> **Global options** can be change through `Chart.defaults.global.plugins.deferred`, which by default defer the chart loading until the first line of pixels of the canvas appears in the viewport.
 
 For example:
 
 ```
 {
-    deferred: {           // enabled by default
-        xOffset: 150,     // defer until 150px of the canvas width are inside the viewport
-        yOffset: '50%',   // defer until 50% of the canvas height are inside the viewport
-        delay: 500        // delay of 500 ms after the canvas is considered inside the viewport
+    plugins: {
+        deferred: {           // enabled by default
+            xOffset: 150,     // defer until 150px of the canvas width are inside the viewport
+            yOffset: '50%',   // defer until 50% of the canvas height are inside the viewport
+            delay: 500        // delay of 500 ms after the canvas is considered inside the viewport
+        }
     }
 }
 ```
-
-Note that default options will defer the chart loading until the first line of pixels of the canvas appears in the viewport.
 
 ## Development
 

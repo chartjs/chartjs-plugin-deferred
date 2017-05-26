@@ -4,35 +4,26 @@ import Chart from 'chart.js';
 
 (function() {
 	var helpers = Chart.helpers;
-	var STUB_KEY = '_chartjs_deferred';
-	var MODEL_KEY = '_deferred_model';
+	var STUB_KEY = '$chartjs_deferred';
+	var MODEL_KEY = '$deferred';
 
 	/**
 	 * Plugin based on discussion from Chart.js issue #2745.
 	 * @see https://github.com/chartjs/Chart.js/issues/2745
 	 */
-	Chart.Deferred = Chart.Deferred || {};
-	Chart.Deferred.defaults = {
-		enabled: true,
+	Chart.defaults.global.plugins.deferred = {
 		xOffset: 0,
 		yOffset: 0,
 		delay: 0
 	};
 
-	// DOM implementation
-	// @TODO move it in Chart.js: src/core/core.platform.js
-	Chart.platform = helpers.extend(Chart.platform || {}, {
-		defer: function(fn, delay, scope) {
-			var callback = function() {
-				fn.call(scope);
-			};
-			if (!delay) {
-				helpers.requestAnimFrame.call(window, callback);
-			} else {
-				window.setTimeout(callback, delay);
-			}
+	function defer(fn, delay) {
+		if (delay) {
+			window.setTimeout(fn, delay);
+		} else {
+			helpers.requestAnimFrame.call(window, fn);
 		}
-	});
+	}
 
 	function computeOffset(value, base) {
 		var number = parseInt(value, 10);
@@ -44,9 +35,9 @@ import Chart from 'chart.js';
 		return number;
 	}
 
-	function chartInViewport(instance) {
-		var model = instance[MODEL_KEY];
-		var canvas = instance.chart.canvas;
+	function chartInViewport(chart) {
+		var options = chart[MODEL_KEY].options;
+		var canvas = chart.chart.canvas;
 
 		// http://stackoverflow.com/a/21696585
 		if (!canvas || canvas.offsetParent === null) {
@@ -54,37 +45,13 @@ import Chart from 'chart.js';
 		}
 
 		var rect = canvas.getBoundingClientRect();
-		var dy = computeOffset(model.yOffset || 0, rect.height);
-		var dx = computeOffset(model.xOffset || 0, rect.width);
+		var dy = computeOffset(options.yOffset || 0, rect.height);
+		var dx = computeOffset(options.xOffset || 0, rect.width);
 
 		return rect.right - dx >= 0
 			&& rect.bottom - dy >= 0
 			&& rect.left + dx <= window.innerWidth
 			&& rect.top + dy <= window.innerHeight;
-	}
-
-	function buildDeferredModel(instance) {
-		var defaults = Chart.Deferred.defaults;
-		var options = instance.options.deferred;
-		var getValue = helpers.getValueOrDefault;
-
-		if (options === undefined) {
-			options = {};
-		} else if (typeof options === 'boolean') {
-			// accepting { options: { deferred: true } }
-			options = {enabled: options};
-		}
-
-		return {
-			enabled: getValue(options.enabled, defaults.enabled),
-			xOffset: getValue(options.xOffset, defaults.xOffset),
-			yOffset: getValue(options.yOffset, defaults.yOffset),
-			delay: getValue(options.delay, defaults.delay),
-			appeared: false,
-			delayed: false,
-			loaded: false,
-			elements: []
-		};
 	}
 
 	function onScroll(event) {
@@ -95,17 +62,17 @@ import Chart from 'chart.js';
 		}
 
 		stub.ticking = true;
-		Chart.platform.defer(function() {
-			var instances = stub.instances.slice();
-			var ilen = instances.length;
-			var instance, i;
+		defer(function() {
+			var charts = stub.charts.slice();
+			var ilen = charts.length;
+			var chart, i;
 
 			for (i=0; i<ilen; ++i) {
-				instance = instances[i];
-				if (chartInViewport(instance)) {
-					unwatch(instance); // eslint-disable-line
-					instance[MODEL_KEY].appeared = true;
-					instance.update();
+				chart = charts[i];
+				if (chartInViewport(chart)) {
+					unwatch(chart); // eslint-disable-line
+					chart[MODEL_KEY].appeared = true;
+					chart.update();
 				}
 			}
 
@@ -125,70 +92,73 @@ import Chart from 'chart.js';
 		return node.nodeType === Node.DOCUMENT_NODE;
 	}
 
-	function watch(instance) {
-		var canvas = instance.chart.canvas;
+	function watch(chart) {
+		var canvas = chart.chart.canvas;
 		var parent = canvas.parentElement;
-		var stub, instances;
+		var stub, charts;
 
 		while (parent) {
 			if (isScrollable(parent)) {
 				stub = parent[STUB_KEY] || (parent[STUB_KEY] = {});
-				instances = stub.instances || (stub.instances = []);
-				if (instances.length === 0) {
+				charts = stub.charts || (stub.charts = []);
+				if (charts.length === 0) {
 					parent.addEventListener('scroll', onScroll, {passive: true});
 				}
 
-				instances.push(instance);
-				instance[MODEL_KEY].elements.push(parent);
+				charts.push(chart);
+				chart[MODEL_KEY].elements.push(parent);
 			}
 
 			parent = parent.parentElement || parent.ownerDocument;
 		}
 	}
 
-	function unwatch(instance) {
-		instance[MODEL_KEY].elements.forEach(function(element) {
-			var instances = element[STUB_KEY].instances;
-			instances.splice(instances.indexOf(instance), 1);
-			if (!instances.length) {
+	function unwatch(chart) {
+		chart[MODEL_KEY].elements.forEach(function(element) {
+			var charts = element[STUB_KEY].charts;
+			charts.splice(charts.indexOf(chart), 1);
+			if (!charts.length) {
 				helpers.removeEvent(element, 'scroll', onScroll);
 				delete element[STUB_KEY];
 			}
 		});
 
-		instance[MODEL_KEY].elements = [];
+		chart[MODEL_KEY].elements = [];
 	}
 
 	Chart.plugins.register({
-		beforeInit: function(instance) {
-			var model = instance[MODEL_KEY] = buildDeferredModel(instance);
-			if (model.enabled) {
-				watch(instance);
-			}
+		id: 'deferred',
+
+		beforeInit: function(chart, options) {
+			chart[MODEL_KEY] = {
+				options: options,
+				appeared: false,
+				delayed: false,
+				loaded: false,
+				elements: []
+			};
+
+			watch(chart);
 		},
 
-		beforeDatasetsUpdate: function(instance) {
-			var model = instance[MODEL_KEY];
-			if (!model.enabled) {
-				return true;
-			}
-
+		beforeDatasetsUpdate: function(chart, options) {
+			var model = chart[MODEL_KEY];
 			if (!model.loaded) {
-				if (!model.appeared && !chartInViewport(instance)) {
+				if (!model.appeared && !chartInViewport(chart)) {
 					// cancel the datasets update
 					return false;
 				}
 
 				model.appeared = true;
 				model.loaded = true;
-				unwatch(instance);
+				unwatch(chart);
 
-				if (model.delay > 0) {
+				if (options.delay > 0) {
 					model.delayed = true;
-					Chart.platform.defer(function() {
+					defer(function() {
 						model.delayed = false;
-						instance.update();
-					}, model.delay);
+						chart.update();
+					}, options.delay);
 
 					return false;
 				}
@@ -205,5 +175,4 @@ import Chart from 'chart.js';
 			unwatch(chart);
 		}
 	});
-
 }());
