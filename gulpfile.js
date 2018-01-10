@@ -64,7 +64,7 @@ gulp.task('lint', function() {
 });
 
 gulp.task('package', function() {
-	return merge(
+	var streams = merge(
 		// gather "regular" files landing in the package root
 		gulp.src([outDir + '*.js', 'LICENSE.md']),
 
@@ -72,10 +72,11 @@ gulp.task('package', function() {
 		// src="../dist/ to src="../ and then copy them in the /samples directory.
 		gulp.src(samplesDir + '**/*', {base: '.'})
 			.pipe(streamify(replace('src="../dist/', 'src="../')))
-	)
-	// finally, create the zip archive
-	.pipe(zip(pkg.name + '.zip'))
-	.pipe(gulp.dest(outDir));
+	);
+
+	return streams
+		.pipe(zip(pkg.name + '.zip'))
+		.pipe(gulp.dest(outDir));
 });
 
 gulp.task('bower', function() {

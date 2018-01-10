@@ -66,7 +66,7 @@ function onScroll(event) {
 		var ilen = charts.length;
 		var chart, i;
 
-		for (i=0; i<ilen; ++i) {
+		for (i = 0; i < ilen; ++i) {
 			chart = charts[i];
 			if (chartInViewport(chart)) {
 				unwatch(chart); // eslint-disable-line

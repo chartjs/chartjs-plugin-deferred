@@ -10,6 +10,7 @@
     "url": "https://github.com/chartjs/chartjs-plugin-deferred.git"
   },
   "devDependencies": {
+    "eslint-config-chartjs": "^0.1.0",
     "gulp": "^3.9.1",
     "gulp-eslint": "^4.0.1",
     "gulp-file": "^0.4.0",

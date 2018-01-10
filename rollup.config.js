@@ -4,7 +4,7 @@ const banner = `/*
  * @license
  * ` + pkg.name + `
  * http://chartjs.org/
- * Version: `+ pkg.version + `
+ * Version: ` + pkg.version + `
  *
  * Copyright ` + (new Date().getFullYear()) + ` Simon Brunel
  * Released under the MIT license
@@ -12,8 +12,7 @@ const banner = `/*
  */`;
 
 export default {
-	entry: 'src/plugin.js',
-	dest: 'dist/' + pkg.name + '.js',
+	input: 'src/plugin.js',
 	banner: banner,
 	format: 'umd',
 	external: [
