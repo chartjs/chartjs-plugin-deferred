@@ -11,6 +11,7 @@
   },
   "devDependencies": {
     "eslint-config-chartjs": "^0.1.0",
+    "gitbook-cli": "^2.3.2",
     "gulp": "^3.9.1",
     "gulp-eslint": "^4.0.1",
     "gulp-file": "^0.4.0",
@@ -21,6 +22,7 @@
     "gulp-util": "^3.0.7",
     "gulp-zip": "^4.1.0",
     "merge2": "^1.2.1",
+    "mz": "^2.7.0",
     "path": "^0.12.7",
     "rollup": "^0.53.4",
     "rollup-stream": "^1.24.1",
