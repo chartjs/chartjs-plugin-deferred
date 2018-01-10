@@ -1,17 +1,19 @@
----
-engines:
+version: "2"
+plugins:
   duplication:
     enabled: true
     config:
       languages:
-      - javascript
-  eslint:
-    enabled: true
-    channel: "eslint-3"
+        - javascript
   fixme:
     enabled: true
-ratings:
-  paths:
-  - "samples/**/*.js"
-  - "src/**/*.js"
-exclude_paths: []
+exclude_patterns:
+  - "coverage/"
+  - "docs/"
+  - "samples/"
+  - "scripts/"
+  - "test/"
+  - "*.js"
+  - "*.json"
+  - "*.md"
+  - ".*"
