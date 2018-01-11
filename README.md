@@ -46,6 +46,7 @@ The following commands will then be available from the repository root:
     > gulp docs             // generate GitBook documentation (`dist/docs`)
     > gulp samples          // prepare samples for release (`dist/samples`)
     > gulp package          // create an archive with dist files and samples
+    > gulp netlify          // prepare Netlify artifacts (`dist/www`)
 
 ## License
 

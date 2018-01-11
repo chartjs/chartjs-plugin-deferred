@@ -20,6 +20,7 @@ var argv = require('yargs')
 	.option('output', {alias: 'o', default: 'dist'})
 	.option('samples-dir', {default: 'samples'})
 	.option('docs-dir', {default: 'docs'})
+	.option('www-dir', {default: 'www'})
 	.argv;
 
 function watch(glob, task) {
@@ -98,6 +99,20 @@ gulp.task('package', ['build', 'samples'], function() {
 
 	return streams
 		.pipe(zip(pkg.name + '.zip'))
+		.pipe(gulp.dest(out));
+});
+
+gulp.task('netlify', ['build', 'docs', 'samples'], function() {
+	var root = argv.output;
+	var out = path.join(root, argv.wwwDir);
+	var streams = merge(
+		gulp.src(path.join(root, argv.docsDir, '**/*'), {base: path.join(root, argv.docsDir)}),
+		gulp.src(path.join(root, argv.samplesDir, '**/*'), {base: root}),
+		gulp.src(path.join(root, '*.js'))
+	);
+
+	return streams
+		.pipe(streamify(replace(/https?:\/\/chartjs-plugin-deferred\.netlify\.com\/?/g, '/', {skipBinary: true})))
 		.pipe(gulp.dest(out));
 });
 
