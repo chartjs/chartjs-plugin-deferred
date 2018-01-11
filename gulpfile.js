@@ -18,6 +18,7 @@ var pkg = require('./package.json');
 
 var argv = require('yargs')
 	.option('output', {alias: 'o', default: 'dist'})
+	.option('samples-dir', {default: 'samples'})
 	.option('docs-dir', {default: 'docs'})
 	.argv;
 
@@ -79,16 +80,20 @@ gulp.task('docs', function(done) {
 	});
 });
 
-gulp.task('package', function() {
+gulp.task('samples', function() {
+	// since we moved the dist files one folder up (package root), we need to rewrite
+	// samples src="../dist/ to src="../ and then copy them in the /samples directory.
+	var out = path.join(argv.output, argv.samplesDir);
+	return gulp.src('samples/**/*', {base: 'samples'})
+		.pipe(streamify(replace(/src="((?:\.\.\/)+)dist\//g, 'src="$1', {skipBinary: true})))
+		.pipe(gulp.dest(out));
+});
+
+gulp.task('package', ['build', 'samples'], function() {
 	var out = argv.output;
 	var streams = merge(
-		// gather "regular" files landing in the package root
-		gulp.src([out + '*.js', 'LICENSE.md']),
-
-		// dist files in the package are in the root, so we need to rewrite samples
-		// src="../dist/ to src="../ and then copy them in the /samples directory.
-		gulp.src('samples/**/*', {base: '.'})
-			.pipe(streamify(replace('src="../dist/', 'src="../')))
+		gulp.src(path.join(out, argv.samplesDir, '**/*'), {base: out}),
+		gulp.src([path.join(out, '*.js'), 'LICENSE.md'])
 	);
 
 	return streams

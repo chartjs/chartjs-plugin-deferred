@@ -1,29 +1,44 @@
-html, body {
-	color: #aaa;
-	font-family: Arial, sans-serif;
-	height: 100%;
-	padding: 0;
+html body {
+	color: #555;
+	font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
 	margin: 0;
+	padding: 0;
 }
 
-code, .btn, #wrapper > .sample {
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-}
-
-.btn, #wrapper > .sample {
-	-webkit-transition: background-color 0.25s ease-in;
-	-o-transition: background-color 0.25s ease-in;
-	transition: background-color 0.25s ease-in;
+body {
+	display: flex;
+	height: 100vh;
 }
 
 a {
-	color: #4BC0C0;
+	color: #ff3784;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #f0287a;
+	text-decoration: underline;
+}
+
+button {
+	background-color: #ff3784;
+	border: none;
+	border-radius: 0;
+	color: white;
+	cursor: pointer;
+	padding: 0.4rem 1rem;
+}
+
+button:hover {
+	background-color: #f0287a;
+	color: white;
 	text-decoration: none;
 }
 
 code {
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
 	display: inline-block;
 	background-color: #f7f7f7;
 	border: 1px solid #f0f0f0;
@@ -32,77 +47,89 @@ code {
 	margin: 16px;
 }
 
-canvas {
-	-moz-user-select: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
+#side {
+	-webkit-box-shadow: -4px 0px 4px -2px rgba(0,0,0,0.1) inset;
+	-moz-box-shadow: -4px 0px 4px -2px rgba(0,0,0,0.1) inset;
+	box-shadow: -4px 0px 4px -2px rgba(0,0,0,0.1) inset;
+	min-width: 240px;
+	max-width: 320px;
+	overflow-y: auto;
+	flex: 1;
 }
-
-.btn {
-	background-color: #f0f0f0;
-	color: #505050;
-	display: inline-block;
-	padding: 2px 8px 2px 6px;
-}
-
-.btn:hover { background-color: #e0e0e0 }
-
-.btn-style_1 { background-color: #36A2EB; color: white; }
-.btn-style_2 { background-color: #4BC0C0; color: white; }
-.btn-style_3 { background-color: #808080; color: white; }
-
-.btn-style_1:hover { background-color: #2B81BC }
-.btn-style_2:hover { background-color: #3C9999 }
-.btn-style_3:hover { background-color: #505050 }
-
 
 #header {
-	background-color: #fcfcfc;
-	background-image: url('http://www.chartjs.org/img/chartjs-logo.svg');
-	background-repeat: no-repeat;
-	background-position: 16px center;
-	background-size: auto 88px;
-	border-bottom: 4px solid #f5f5f5;
-	line-height: 1.4;
-	padding: 16px 16px 16px 120px;
-	position: fixed;
-	width: 100%;
-	z-index: 999;
+	text-align: center;
+	padding: 0.5rem;
 }
 
-#header h1,
-#header h2 {
-	margin: 0;
-}
-
-#header h1 {
-	color: #888;
-	font-size: 1.4em;
-	font-weight: bold;
-}
-
-#header h2 {
-	font-size: 1em;
-	font-weight: normal;
-	margin-bottom: 4px;
-}
-
-#header a {
+#header .scope {
+	display: inline-block;
 	font-size: 0.9em;
+	font-weight: 600;
+	padding: 4px 8px 8px;
 }
 
-#wrapper {
-	position: absolute;
+#header .title {
+	border: 1px solid #aaa;
+	border-radius: 4px;
+	color: #888;
+	padding: 0.25rem;
 }
 
-#wrapper > .head {
-	color: #ccc;
+#header .title .name {
+	color: #222;
+	font-weight: 600;
+}
+
+#header .desc {
+	border-top: 1px dotted #ccc;
+	font-size: 0.8rem;
+	margin-top: 0.5rem;
+	padding: 0.5rem;
+	position: relative;
+}
+
+#navigator {
+	display: flex;
+	padding: 8px;
+}
+
+#actions,
+#options {
+	border-top: 1px dashed #ddd;
+}
+
+#actions {
+	display: flex;
+	flex-direction: column;
+	padding: 0.5em;
+}
+
+#actions button {
+	flex: 1 1 auto;
+	margin: 0 0 2px 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+#charts {
+	max-width: 1200px;
+	min-width: 200px;
+	overflow-y: auto;
+	padding: 16px;
+	flex: 5;
+}
+
+#charts .head {
+	color: #aaa;
 	font-size: 1.4em;
 	text-align: right;
 	text-transform: uppercase;
+	white-space: nowrap;
 }
 
-#wrapper > .chart {
+#charts > .chart {
 	min-width: 512px;
 	max-width: 512px;
 	padding: 64px 96px;
@@ -110,38 +137,25 @@ canvas {
 	vertical-align: middle;
 }
 
-#wrapper > .foot {
-	padding: 64px;
-	color: #aaf;
-	font-size: 1.4em;
-	text-decoration: none;
-	text-transform: uppercase;
-	text-align: center;
+@media (max-width: 640px) and (orientation: portrait) {
+	body {
+		flex-direction: column;
+	}
+
+	#side {
+		-webkit-box-shadow: 0px -4px 4px -2px rgba(0,0,0,0.1) inset;
+		-moz-box-shadow: 0px -4px 4px -2px rgba(0,0,0,0.1) inset;
+		box-shadow: 0px -4px 4px -2px rgba(0,0,0,0.1) inset;
+		max-height: 50vh;
+		max-width: initial;
+		flex: 0 1 auto;
+	}
+
+	#actions {
+		flex-direction: row;
+	}
+
+	#actions button {
+		margin: 0 2px 0 0;
+	}
 }
-
-#wrapper > .sample {
-	display: inline-block;
-	background-color: #f8f8f8;
-	margin: 0 16px 16px 0;
-	padding-right: 16px;
-	width: 256px;
-}
-
-#wrapper > .sample:hover {
-	background-color: #f0f0f0;
-}
-
-#wrapper > .sample > div {
-	display: inline-block;
-	vertical-align: middle;
-}
-
-#wrapper > .sample > .fa {
-	border-right: 1px dotted #e0e0e0;
-	display: inline-block;
-	font-size: 4em;
-	margin-right: 16px;
-	padding: 16px;
-}
-
-

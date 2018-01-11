@@ -1,33 +1,58 @@
-<!doctype html>
-<html>
-	<head>
-		<title>Examples | chartjs-plugin-deferred</title>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<style>
-			#wrapper {
-				margin: 136px 24px;
-			}
-		</style>
-	</head>
-	<body>
-		<div id="start"></div>
-		<div id="header">
-			<h1>chartjs-plugin-deferred | Examples</h1>
-			<h2>A Chart.js plugin to defer initial chart update.</h2>
-			<a class="btn btn-style_1" href="https://github.com/chartjs/chartjs-plugin-deferred#configuration"><i class="fa fa-book"></i> Documentation</a>
-			<a class="btn btn-style_2" href="http://www.chartjs.org"><i class="fa fa-globe"></i> Website</a>
-			<a class="btn btn-style_3" href="https://github.com/chartjs/chartjs-plugin-deferred"><i class="fa fa-github"></i> GitHub</a>
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>chartjs-plugin-deferred / samples</title>
+	<link rel="stylesheet" type="text/css" href="index.css">
+	<link rel="icon" type="image/ico" href="favicon.ico">
+	<script src="samples.js"></script>
+	<script src="utils.js"></script>
+</head>
+<body>
+	<div id="header">
+		<div class="title">
+			<span class="main">chartjs-plugin-deferred</span>
+			<span class="name">Samples</span>
 		</div>
-		<div id="wrapper">
-			<a class="sample" href="deferred-vertical.html">
-				<div class="fa fa-chevron-circle-down"></div>
-				<div><b>Vertical</b> Scrolling</div>
-			</a>
-			<a class="sample" href="deferred-horizontal.html">
-				<div class="fa fa-chevron-circle-right"></div>
-				<div><b>Horizontal</b> Scrolling</div>
-			</a>
+		<div class="caption"><a href="http://www.chartjs.org">Chart.js</a> plugin to display labels on data</div>
+		<div class="links">
+			<a class="btn btn-docs" href="https://chartjs-plugin-deferred.netlify.com">Documentation</a>
+			<a class="btn btn-gh" href="https://github.com/chartjs/chartjs-plugin-deferred">GitHub</a>
 		</div>
-	</body>
+	</div>
+
+	<div id="categories"></div>
+
+	<script>
+		function createCategory(item) {
+			var el = document.createElement('div');
+			el.className = 'samples-category';
+			el.innerHTML =
+				'<div class="title">' + item.title + '</div>' +
+				'<div class="items"></div>';
+			return el;
+		}
+
+		function createEntry(item) {
+			var el = document.createElement('div');
+			el.className = 'samples-entry';
+			el.innerHTML = '<a class="title" href="' + item.path + '">' + item.title + '</a>';
+			return el;
+		}
+
+		var categories = document.getElementById('categories');
+		Samples.items.forEach(function(item) {
+			var category = createCategory(item);
+			var children = category.getElementsByClassName('items')[0];
+
+			(item.items || []).forEach(function(item) {
+				children.appendChild(createEntry(item));
+			});
+
+			categories.appendChild(category);
+		});
+	</script>
+</body>
 </html>
