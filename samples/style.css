@@ -114,8 +114,6 @@ code {
 }
 
 #charts {
-	max-width: 1200px;
-	min-width: 200px;
 	overflow-y: auto;
 	padding: 16px;
 	flex: 5;
