@@ -56,7 +56,7 @@ function chartInViewport(chart) {
 function onScroll(event) {
 	var node = event.target;
 	var stub = node[STUB_KEY];
-	if (stub.ticking) {
+	if (!stub || stub.ticking) {
 		return;
 	}
 
