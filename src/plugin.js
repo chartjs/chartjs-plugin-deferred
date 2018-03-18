@@ -101,7 +101,7 @@ function watch(chart) {
 			stub = parent[STUB_KEY] || (parent[STUB_KEY] = {});
 			charts = stub.charts || (stub.charts = []);
 			if (charts.length === 0) {
-				parent.addEventListener('scroll', onScroll, {passive: true});
+				helpers.addEvent(parent, 'scroll', onScroll);
 			}
 
 			charts.push(chart);
