@@ -155,8 +155,18 @@ Chart.plugins.register({
 			if (options.delay > 0) {
 				model.delayed = true;
 				defer(function() {
-					model.delayed = false;
-					chart.update();
+					// Ensure the chart instance is still alive. It may have been destroyed
+					// during a delay and calling `chart.update()` will fail. The most common
+					// reason for such scenario is user navigation. Steps:
+					// - open a view with the chart that has a deferred render;
+					// - close a view before the delay timer expires.
+					// After the second step both `chart.ctx` and `chart.canvas` won't exist.
+					// Note that `chart.canvas` is a reference of `chart.ctx.canvas`.
+					// https://github.com/chartjs/chartjs-plugin-deferred/pull/14#discussion_r584200015
+					if (chart.ctx !== null) {
+						model.delayed = false;
+						chart.update();
+					}
 				}, options.delay);
 
 				return false;
