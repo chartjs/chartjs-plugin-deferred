@@ -155,8 +155,14 @@ Chart.plugins.register({
 			if (options.delay > 0) {
 				model.delayed = true;
 				defer(function() {
-					model.delayed = false;
-					chart.update();
+					// Ensure the chart instance is still alive. It may have been destroyed
+					// during a delay and calling `chart.update()` will fail. The most common
+					// reason for such scenario is user navigation.
+					// https://github.com/chartjs/chartjs-plugin-deferred/pull/14
+					if (chart.ctx) {
+						model.delayed = false;
+						chart.update();
+					}
 				}, options.delay);
 
 				return false;
