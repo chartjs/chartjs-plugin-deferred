@@ -10,9 +10,10 @@ Requires [Chart.js](https://github.com/chartjs/Chart.js/releases) **2.6.0** or l
 
 ## Documentation
 
-- [Installation](https://chartjs-plugin-deferred.netlify.app/installation)
-- [Options](https://chartjs-plugin-deferred.netlify.app/options)
-- [Samples](https://chartjs-plugin-deferred.netlify.app/samples)
+- [Introduction](https://chartjs-plugin-deferred.netlify.app/)
+- [Installation](https://chartjs-plugin-deferred.netlify.app/installation.html)
+- [Options](https://chartjs-plugin-deferred.netlify.app/options.html)
+- [Samples](https://chartjs-plugin-deferred.netlify.app/samples/)
 
 ## Example
 
@@ -43,7 +44,8 @@ The following commands will then be available from the repository root:
     > gulp build            // build dist files
     > gulp build --watch    // build and watch for changes
     > gulp lint             // perform code linting
-    > gulp docs             // generate GitBook documentation (`dist/docs`)
+    > npm run docs          // generate documentation (`dist/docs`)
+    > npm run docs:dev      // generate documentation and watch for changes
     > gulp samples          // prepare samples for release (`dist/samples`)
     > gulp package          // create an archive with dist files and samples
     > gulp netlify          // prepare Netlify artifacts (`dist/www`)

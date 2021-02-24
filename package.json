@@ -9,9 +9,14 @@
     "type": "git",
     "url": "https://github.com/chartjs/chartjs-plugin-deferred.git"
   },
+  "scripts": {
+    "docs": "vuepress build docs --no-cache",
+    "docs:dev": "vuepress dev docs --no-cache"
+  },
   "devDependencies": {
+    "@vuepress/plugin-google-analytics": "^1.8.2",
+    "chart.js": "^2.9.4",
     "eslint-config-chartjs": "^0.1.0",
-    "gitbook-cli": "^2.3.2",
     "gulp": "^4.0.2",
     "gulp-eslint": "^4.0.2",
     "gulp-file": "^0.4.0",
@@ -25,6 +30,8 @@
     "rollup": "^0.53.4",
     "rollup-stream": "^1.24.1",
     "vinyl-source-stream": "^2.0.0",
+    "vuepress": "^1.8.2",
+    "vuepress-theme-chartjs": "^0.2.0",
     "yargs": "^10.1.2"
   },
   "peerDependencies": {

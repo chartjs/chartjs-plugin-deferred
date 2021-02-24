@@ -1,4 +1,8 @@
-![chartjs-plugin-deferred](assets/banner.png)
+---
+title: Introduction
+---
+
+![chartjs-plugin-deferred](./assets/banner.png)
 
 [Chart.js](http://www.chartjs.org/) plugin to defer initial chart updates until the user scrolls and the canvas appears inside the viewport, and thus trigger the initial chart animations when the user is likely to see them.
 
@@ -6,7 +10,9 @@
 
 ## Table of Contents
 
-{% include "SUMMARY.md" %}
+* [Installation](installation.md)
+* [Options](options.md)
+* [Samples](https://chartjs-plugin-deferred.netlify.app/samples/)
 
 ## Example
 
