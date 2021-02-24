@@ -41,8 +41,8 @@ You first need to install node dependencies (requires [Node.js](https://nodejs.o
 
 The following commands will then be available from the repository root:
 
-    > gulp build            // build dist files
-    > gulp build --watch    // build and watch for changes
+    > npm run build         // build dist files
+    > npm run build:dev     // build and watch for changes
     > gulp lint             // perform code linting
     > npm run docs          // generate documentation (`dist/docs`)
     > npm run docs:dev      // generate documentation and watch for changes

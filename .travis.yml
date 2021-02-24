@@ -4,7 +4,7 @@ node_js:
 
 script:
   - gulp lint
-  - gulp build
+  - npm run build
   - gulp package
   - gulp bower
 

@@ -1,21 +1,42 @@
+const terser = require('rollup-plugin-terser').terser;
 const pkg = require('./package.json');
 
 const banner = `/*!
- * @license
  * ${pkg.name} v${pkg.version}
  * ${pkg.homepage}
  * (c) 2016-${new Date().getFullYear()} ${pkg.name} contributors
  * Released under the ${pkg.license} license
  */`;
 
-export default {
-	input: 'src/plugin.js',
-	banner: banner,
-	format: 'umd',
-	external: [
-		'chart.js'
-	],
-	globals: {
-		'chart.js': 'Chart'
+module.exports = [
+	{
+		input: 'src/plugin.js',
+		output: ['.js', '.min.js'].map((suffix) => {
+			const config = {
+				file: `dist/${pkg.name}${suffix}`,
+				banner: banner,
+				format: 'umd',
+				indent: false,
+				plugins: [],
+				globals: {
+					'chart.js': 'Chart'
+				}
+			};
+
+			if (suffix.match(/\.min\.js$/)) {
+				config.plugins.push(
+					terser({
+						output: {
+							comments: /^!/
+						}
+					})
+				);
+			}
+
+			return config;
+		}),
+		external: [
+			'chart.js'
+		]
 	}
-};
+];
