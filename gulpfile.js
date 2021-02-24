@@ -1,5 +1,3 @@
-'use strict';
-
 var gulp = require('gulp');
 var eslint = require('gulp-eslint');
 var file = require('gulp-file');
@@ -13,7 +11,7 @@ var merge = require('merge2');
 var path = require('path');
 var rollup = require('rollup-stream');
 var source = require('vinyl-source-stream');
-var {exec} = require('mz/child_process');
+var {exec} = require('child_process');
 var pkg = require('./package.json');
 
 var argv = require('yargs')
@@ -32,8 +30,6 @@ function watch(glob, task) {
 		return r;
 	});
 }
-
-gulp.task('default', ['build']);
 
 gulp.task('build', function() {
 	var out = argv.output;
@@ -86,11 +82,11 @@ gulp.task('samples', function() {
 	// samples src="../dist/ to src="../ and then copy them in the /samples directory.
 	var out = path.join(argv.output, argv.samplesDir);
 	return gulp.src('samples/**/*', {base: 'samples'})
-		.pipe(streamify(replace(/src="((?:\.\.\/)+)dist\//g, 'src="$1', {skipBinary: true})))
+		.pipe(streamify(replace(/src="((?:\.\.\/)+)dist\//g, 'src="$1')))
 		.pipe(gulp.dest(out));
 });
 
-gulp.task('package', ['build', 'samples'], function() {
+gulp.task('package', gulp.series(gulp.parallel('build', 'samples'), function() {
 	var out = argv.output;
 	var streams = merge(
 		gulp.src(path.join(out, argv.samplesDir, '**/*'), {base: out}),
@@ -100,9 +96,9 @@ gulp.task('package', ['build', 'samples'], function() {
 	return streams
 		.pipe(zip(pkg.name + '.zip'))
 		.pipe(gulp.dest(out));
-});
+}));
 
-gulp.task('netlify', ['build', 'docs', 'samples'], function() {
+gulp.task('netlify', gulp.series(gulp.parallel('build', 'docs', 'samples'), function() {
 	var root = argv.output;
 	var out = path.join(root, argv.wwwDir);
 	var streams = merge(
@@ -112,9 +108,9 @@ gulp.task('netlify', ['build', 'docs', 'samples'], function() {
 	);
 
 	return streams
-		.pipe(streamify(replace(/https?:\/\/chartjs-plugin-deferred\.netlify\.app\/?/g, '/', {skipBinary: true})))
+		.pipe(streamify(replace(/https?:\/\/chartjs-plugin-deferred\.netlify\.app\/?/g, '/')))
 		.pipe(gulp.dest(out));
-});
+}));
 
 gulp.task('bower', function() {
 	var json = JSON.stringify({
