@@ -3,7 +3,7 @@ node_js:
   - "6"
 
 script:
-  - gulp lint
+  - npm run lint
   - npm run build
   - gulp package
   - gulp bower

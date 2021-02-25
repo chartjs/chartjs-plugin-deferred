@@ -43,7 +43,8 @@ The following commands will then be available from the repository root:
 
     > npm run build         // build dist files
     > npm run build:dev     // build and watch for changes
-    > gulp lint             // perform code linting
+    > npm run lint          // perform code linting
+    > npm run lint -- --fix // automatically fix linting problems
     > npm run docs          // generate documentation (`dist/docs`)
     > npm run docs:dev      // generate documentation and watch for changes
     > gulp samples          // prepare samples for release (`dist/samples`)

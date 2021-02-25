@@ -1,5 +1,4 @@
 var gulp = require('gulp');
-var eslint = require('gulp-eslint');
 var file = require('gulp-file');
 var replace = require('gulp-replace');
 var streamify = require('gulp-streamify');
@@ -17,19 +16,6 @@ var argv = require('yargs')
 	.argv;
 
 gulp.task('build', () => exec(`npm run build${argv.watch ? ':dev' : ''}`));
-
-gulp.task('lint', function() {
-	var files = [
-		'samples/**/*.js',
-		'src/**/*.js',
-		'*.js'
-	];
-
-	return gulp.src(files)
-		.pipe(eslint())
-		.pipe(eslint.format())
-		.pipe(eslint.failAfterError());
-});
 
 gulp.task('docs', () => exec('npm run docs'));
 

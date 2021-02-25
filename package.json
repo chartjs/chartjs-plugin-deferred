@@ -13,14 +13,15 @@
     "build": "rollup -c",
     "build:dev": "rollup -c --watch",
     "docs": "vuepress build docs --no-cache",
-    "docs:dev": "vuepress dev docs --no-cache"
+    "docs:dev": "vuepress dev docs --no-cache",
+    "lint": "eslint . --ext .js"
   },
   "devDependencies": {
     "@vuepress/plugin-google-analytics": "^1.8.2",
     "chart.js": "^2.9.4",
+    "eslint": "^7.23.0",
     "eslint-config-chartjs": "^0.1.0",
     "gulp": "^4.0.2",
-    "gulp-eslint": "^4.0.2",
     "gulp-file": "^0.4.0",
     "gulp-replace": "^1.0.0",
     "gulp-streamify": "^1.0.2",
