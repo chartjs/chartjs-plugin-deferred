@@ -1,14 +1,11 @@
 const pkg = require('./package.json');
 
-const banner = `/*
+const banner = `/*!
  * @license
- * ` + pkg.name + `
- * http://chartjs.org/
- * Version: ` + pkg.version + `
- *
- * Copyright ` + (new Date().getFullYear()) + ` Simon Brunel
- * Released under the MIT license
- * https://github.com/chartjs/` + pkg.name + `/blob/master/LICENSE.md
+ * ${pkg.name} v${pkg.version}
+ * ${pkg.homepage}
+ * (c) 2016-${new Date().getFullYear()} ${pkg.name} contributors
+ * Released under the ${pkg.license} license
  */`;
 
 export default {
