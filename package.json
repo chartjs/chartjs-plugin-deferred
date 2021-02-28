@@ -13,21 +13,20 @@
     "eslint-config-chartjs": "^0.1.0",
     "gitbook-cli": "^2.3.2",
     "gulp": "^3.9.1",
-    "gulp-eslint": "^4.0.1",
+    "gulp-eslint": "^4.0.2",
     "gulp-file": "^0.4.0",
-    "gulp-rename": "^1.2.2",
+    "gulp-rename": "^1.4.0",
     "gulp-replace": "^0.6.1",
     "gulp-streamify": "^1.0.2",
-    "gulp-uglify": "^3.0.0",
-    "gulp-util": "^3.0.7",
-    "gulp-zip": "^4.1.0",
-    "merge2": "^1.2.1",
+    "gulp-uglify": "^3.0.2",
+    "gulp-util": "^3.0.8",
+    "gulp-zip": "^4.2.0",
+    "merge2": "^1.4.1",
     "mz": "^2.7.0",
-    "path": "^0.12.7",
     "rollup": "^0.53.4",
     "rollup-stream": "^1.24.1",
     "vinyl-source-stream": "^2.0.0",
-    "yargs": "^10.1.1"
+    "yargs": "^10.1.2"
   },
   "peerDependencies": {
     "chart.js": ">= 2.6.0 < 3"
