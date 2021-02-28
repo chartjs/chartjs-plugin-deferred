@@ -10,9 +10,9 @@ Requires [Chart.js](https://github.com/chartjs/Chart.js/releases) **2.6.0** or l
 
 ## Documentation
 
-- [Installation](https://chartjs-plugin-deferred.netlify.com/installation)
-- [Options](https://chartjs-plugin-deferred.netlify.com/options)
-- [Samples](https://chartjs-plugin-deferred.netlify.com/samples)
+- [Installation](https://chartjs-plugin-deferred.netlify.app/installation)
+- [Options](https://chartjs-plugin-deferred.netlify.app/options)
+- [Samples](https://chartjs-plugin-deferred.netlify.app/samples)
 
 ## Example
 

@@ -1,6 +1,6 @@
 {
   "name": "chartjs-plugin-deferred",
-  "homepage": "https://chartjs-plugin-deferred.netlify.com",
+  "homepage": "https://chartjs-plugin-deferred.netlify.app",
   "description": "Chart.js plugin to defer initial chart updates",
   "version": "1.0.1",
   "license": "MIT",
