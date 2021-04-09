@@ -47,9 +47,7 @@ The following commands will then be available from the repository root:
     > npm run lint -- --fix // automatically fix linting problems
     > npm run docs          // generate documentation (`dist/docs`)
     > npm run docs:dev      // generate documentation and watch for changes
-    > gulp samples          // prepare samples for release (`dist/samples`)
     > gulp package          // create an archive with dist files and samples
-    > gulp netlify          // prepare Netlify artifacts (`dist/www`)
 
 ## License
 

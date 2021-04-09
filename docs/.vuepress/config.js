@@ -12,6 +12,12 @@ module.exports = {
 		['@vuepress/google-analytics', {
 			ga: 'UA-99068522-3'
 		}],
+		['redirect', {
+			redirectors: [
+				{base: '/samples', alternative: ['delay']},
+				{base: '/', alternative: ['guide/']},
+			],
+		}],
 	],
 	themeConfig: {
 		repo: 'chartjs/chartjs-plugin-deferred',
@@ -19,14 +25,27 @@ module.exports = {
 		lastUpdated: 'Last Updated',
 		editLinks: true,
 		docsDir: 'docs',
+		chart: {
+			imports: [
+				['scripts/register.js'],
+				['scripts/defaults.js'],
+				['scripts/utils.js', 'Utils'],
+			]
+		},
 		nav: [
-			{text: 'Guide', link: '/'},
-			{text: 'Samples', link: 'https://chartjs-plugin-deferred.netlify.com/samples/'},
+			{text: 'Guide', link: '/guide/'},
+			{text: 'Samples', link: '/samples/'},
 		],
-		sidebar: [
-			'',
-			'installation',
-			'options',
-		],
+		sidebar: {
+			'/guide/': [
+				'',
+				'installation',
+				'options',
+			],
+			'/samples/': [
+				'delay.md',
+				'offset.md',
+			]
+		}
 	}
 };

@@ -12,8 +12,8 @@
   "scripts": {
     "build": "rollup -c",
     "build:dev": "rollup -c --watch",
-    "docs": "vuepress build docs --no-cache",
-    "docs:dev": "vuepress dev docs --no-cache",
+    "docs": "npm run build && vuepress build docs --no-cache",
+    "docs:dev": "npm run build && vuepress dev docs --no-cache",
     "lint": "eslint . --ext .js"
   },
   "devDependencies": {
@@ -23,13 +23,12 @@
     "eslint-config-chartjs": "^0.1.0",
     "gulp": "^4.0.2",
     "gulp-file": "^0.4.0",
-    "gulp-replace": "^1.0.0",
-    "gulp-streamify": "^1.0.2",
     "gulp-zip": "^5.1.0",
     "merge2": "^1.4.1",
     "rollup": "^2.44.0",
     "rollup-plugin-terser": "^7.0.2",
     "vuepress": "^1.8.2",
+    "vuepress-plugin-redirect": "^1.2.5",
     "vuepress-theme-chartjs": "^0.2.0",
     "yargs": "^10.1.2"
   },
