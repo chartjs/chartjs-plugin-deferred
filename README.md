@@ -47,7 +47,7 @@ The following commands will then be available from the repository root:
     > npm run lint -- --fix // automatically fix linting problems
     > npm run docs          // generate documentation (`dist/docs`)
     > npm run docs:dev      // generate documentation and watch for changes
-    > gulp package          // create an archive with dist files and samples
+    > npm run package       // create tgz and zip archives with dist files
 
 ## License
 

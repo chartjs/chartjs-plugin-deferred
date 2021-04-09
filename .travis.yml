@@ -1,12 +1,12 @@
 language: node_js
 node_js:
-  - "6"
+  - "14"
 
 script:
   - npm run lint
   - npm run build
-  - gulp package
-  - gulp bower
+  - npm run package
+  - npm run bower
 
 # IMPORTANT: scripts require GITHUB_AUTH_TOKEN and GITHUB_AUTH_EMAIL environment variables
 # IMPORTANT: scripts has to be set executables in the Git repository (error 127)
@@ -24,6 +24,7 @@ deploy:
     file:
       - "./dist/chartjs-plugin-deferred.js"
       - "./dist/chartjs-plugin-deferred.min.js"
+      - "./dist/chartjs-plugin-deferred.tgz"
       - "./dist/chartjs-plugin-deferred.zip"
     skip_cleanup: true
     on:
