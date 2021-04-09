@@ -4,13 +4,17 @@
 
 [![npm](https://img.shields.io/npm/v/chartjs-plugin-deferred.svg?style=flat-square&maxAge=600)](https://npmjs.com/package/chartjs-plugin-deferred) [![npm downloads](https://img.shields.io/npm/dm/chartjs-plugin-deferred.svg?style=flat-square&maxAge=600)](https://npmjs.com/package/chartjs-plugin-deferred)
 
-    npm install chartjs-plugin-deferred --save
+```sh
+npm install chartjs-plugin-deferred --save
+```
 
 ## Bower
 
 [![bower](https://img.shields.io/bower/v/chartjs-plugin-deferred.svg?style=flat-square&maxAge=600)](https://libraries.io/bower/chartjs-plugin-deferred)
 
-    bower install chartjs-plugin-deferred --save
+```sh
+bower install chartjs-plugin-deferred --save
+```
 
 ## CDN
 
@@ -18,8 +22,10 @@
 
 By default, `https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred` returns the latest (minified) version, however it's [**highly recommended**](https://www.jsdelivr.com/features) to always specify a version in order to avoid breaking changes. This can be achieved by appending `@{version}` to the url:
 
-    https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1.1.2    // exact version
-    https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1        // latest 1.x.x
+```sh
+https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1.1.2    // exact version
+https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1        // latest 1.x.x
+```
 
 Read more about jsDeliver versioning on their [website](http://www.jsdelivr.com/).
 

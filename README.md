@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="docs/assets/banner.png"/>
+  <img src="docs/assets/banner.png"/>
 </div>
 
 [![github](https://img.shields.io/github/release/chartjs/chartjs-plugin-deferred.svg?style=flat-square&maxAge=600)](https://github.com/chartjs/chartjs-plugin-deferred/releases/latest) [![travis](https://img.shields.io/travis/chartjs/chartjs-plugin-deferred.svg?style=flat-square&maxAge=600)](https://travis-ci.org/chartjs/chartjs-plugin-deferred) [![codeclimate](https://img.shields.io/codeclimate/maintainability/chartjs/chartjs-plugin-deferred.svg?style=flat-square&maxAge=600)](https://codeclimate.com/github/chartjs/chartjs-plugin-deferred)
@@ -37,17 +37,21 @@ new Chart(ctx, {
 
 You first need to install node dependencies (requires [Node.js](https://nodejs.org/)):
 
-    > npm install
+```sh
+> npm install
+```
 
 The following commands will then be available from the repository root:
 
-    > npm run build         // build dist files
-    > npm run build:dev     // build and watch for changes
-    > npm run lint          // perform code linting
-    > npm run lint -- --fix // automatically fix linting problems
-    > npm run docs          // generate documentation (`dist/docs`)
-    > npm run docs:dev      // generate documentation and watch for changes
-    > npm run package       // create tgz and zip archives with dist files
+```sh
+> npm run build             // build dist files
+> npm run build:dev         // build and watch for changes
+> npm run lint              // perform code linting
+> npm run lint -- --fix     // automatically fix linting problems
+> npm run docs              // generate documentation (`dist/docs`)
+> npm run docs:dev          // generate documentation and watch for changes
+> npm run package           // create tgz and zip archives with dist files
+```
 
 ## License
 
