@@ -1,4 +1,4 @@
-import {plugins} from 'chart.js';
+import Chart from 'chart.js/auto';
 import plugin from '../../dist/chartjs-plugin-deferred.js';
 
-plugins.register(plugin);
+Chart.register(plugin);

@@ -1,4 +1,5 @@
-import {defaults, helpers} from 'chart.js';
+import {defaults} from 'chart.js';
+import * as helpers from 'chart.js/helpers';
 
 const {merge} = helpers;
 
