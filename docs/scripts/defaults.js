@@ -5,9 +5,6 @@ merge(defaults.plugins, {
   legend: {
     display: false
   },
-  title: {
-    display: false
-  },
   tooltip: {
     enabled: false
   }
