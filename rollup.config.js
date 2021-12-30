@@ -20,7 +20,7 @@ module.exports = [
         plugins: [],
         globals: {
           'chart.js': 'Chart',
-          'chart.js/helpers': 'Chartjs Helpers'
+          'chart.js/helpers': 'Chart.helpers'
         }
       };
 
