@@ -102,6 +102,7 @@ function watch(chart) {
       charts.push(chart);
       chart[MODEL_KEY].elements.push(parent);
     }
+
     parent = parent.parentElement || parent.ownerDocument;
   }
 }
