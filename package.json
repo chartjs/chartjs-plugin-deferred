@@ -5,6 +5,7 @@
   "version": "1.0.2",
   "license": "MIT",
   "main": "dist/chartjs-plugin-deferred.js",
+  "module": "dist/chartjs-plugin-deferred.esm.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/chartjs/chartjs-plugin-deferred.git"

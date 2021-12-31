@@ -24,6 +24,7 @@ deploy:
     file:
       - "./dist/chartjs-plugin-deferred.js"
       - "./dist/chartjs-plugin-deferred.min.js"
+      - "./dist/chartjs-plugin-deferred.esm.js"
       - "./dist/chartjs-plugin-deferred.tgz"
       - "./dist/chartjs-plugin-deferred.zip"
     skip_cleanup: true

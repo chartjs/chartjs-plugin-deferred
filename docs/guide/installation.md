@@ -37,4 +37,6 @@ You can download the latest version of `chartjs-plugin-deferred` from the [GitHu
 
 - `chartjs-plugin-deferred.js` (recommended for development)
 - `chartjs-plugin-deferred.min.js` (recommended for production)
-- `chartjs-plugin-deferred.zip` (contains `.js` and `.min.js` versions + samples)
+- `chartjs-plugin-deferred.esm.js`
+- `chartjs-plugin-deferred.tgz` (contains all builds)
+- `chartjs-plugin-deferred.zip` (contains all builds)
