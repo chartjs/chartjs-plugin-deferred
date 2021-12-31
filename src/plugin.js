@@ -129,7 +129,7 @@ Chart.register({
     delay: 0
   },
 
-  beforeInit: function(chart, args, options) {
+  beforeInit: function(chart, _, options) {
     chart[MODEL_KEY] = {
       options: options,
       appeared: false,
@@ -141,7 +141,7 @@ Chart.register({
     watch(chart);
   },
 
-  beforeDatasetsUpdate: function(chart, args, options) {
+  beforeDatasetsUpdate: function(chart, _, options) {
     var model = chart[MODEL_KEY];
     if (!model.loaded) {
       if (!model.appeared && !chartInViewport(chart)) {
