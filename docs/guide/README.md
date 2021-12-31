@@ -6,7 +6,9 @@ title: Introduction
 
 [Chart.js](http://www.chartjs.org/) plugin to defer initial chart updates until the user scrolls and the canvas appears inside the viewport, and thus trigger the initial chart animations when the user is likely to see them.
 
-**Important:** requires [Chart.js](https://github.com/chartjs/Chart.js/releases) **2.6.0** or later.
+::: warning COMPATIBILITY NOTE
+Requires [Chart.js](https://github.com/chartjs/Chart.js/releases) **3.x**
+:::
 
 ## Table of Contents
 

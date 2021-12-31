@@ -1,4 +1,5 @@
-import {plugins} from 'chart.js';
+import {Chart, registerables} from 'chart.js';
 import plugin from '../../dist/chartjs-plugin-deferred.js';
 
-plugins.register(plugin);
+Chart.register(...registerables);
+Chart.register(plugin);

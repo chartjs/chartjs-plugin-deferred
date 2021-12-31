@@ -1,8 +1,8 @@
 'use strict';
 
-import Chart from 'chart.js';
+import {Chart} from 'chart.js';
+import {requestAnimFrame, getStyle} from 'chart.js/helpers';
 
-var helpers = Chart.helpers;
 var STUB_KEY = '$chartjs_deferred';
 var MODEL_KEY = '$deferred';
 
@@ -10,17 +10,12 @@ var MODEL_KEY = '$deferred';
  * Plugin based on discussion from Chart.js issue #2745.
  * @see https://github.com/chartjs/Chart.js/issues/2745
  */
-Chart.defaults.global.plugins.deferred = {
-  xOffset: 0,
-  yOffset: 0,
-  delay: 0
-};
 
 function defer(fn, delay) {
   if (delay) {
     window.setTimeout(fn, delay);
   } else {
-    helpers.requestAnimFrame.call(window, fn);
+    requestAnimFrame.call(window, fn);
   }
 }
 
@@ -36,7 +31,7 @@ function computeOffset(value, base) {
 
 function chartInViewport(chart) {
   var options = chart[MODEL_KEY].options;
-  var canvas = chart.chart.canvas;
+  var canvas = chart.canvas;
 
   // http://stackoverflow.com/a/21696585
   if (!canvas || canvas.offsetParent === null) {
@@ -82,8 +77,8 @@ function onScroll(event) {
 function isScrollable(node) {
   var type = node.nodeType;
   if (type === Node.ELEMENT_NODE) {
-    var overflowX = helpers.getStyle(node, 'overflow-x');
-    var overflowY = helpers.getStyle(node, 'overflow-y');
+    var overflowX = getStyle(node, 'overflow-x');
+    var overflowY = getStyle(node, 'overflow-y');
     return overflowX === 'auto' || overflowX === 'scroll'
       || overflowY === 'auto' || overflowY === 'scroll';
   }
@@ -92,7 +87,7 @@ function isScrollable(node) {
 }
 
 function watch(chart) {
-  var canvas = chart.chart.canvas;
+  var canvas = chart.canvas;
   var parent = canvas.parentElement;
   var stub, charts;
 
@@ -101,7 +96,7 @@ function watch(chart) {
       stub = parent[STUB_KEY] || (parent[STUB_KEY] = {});
       charts = stub.charts || (stub.charts = []);
       if (charts.length === 0) {
-        helpers.addEvent(parent, 'scroll', onScroll);
+        parent.addEventListener('scroll', onScroll);
       }
 
       charts.push(chart);
@@ -117,7 +112,7 @@ function unwatch(chart) {
     var charts = element[STUB_KEY].charts;
     charts.splice(charts.indexOf(chart), 1);
     if (!charts.length) {
-      helpers.removeEvent(element, 'scroll', onScroll);
+      element.removeEventListener('scroll', onScroll);
       delete element[STUB_KEY];
     }
   });
@@ -125,10 +120,16 @@ function unwatch(chart) {
   chart[MODEL_KEY].elements = [];
 }
 
-Chart.plugins.register({
+Chart.register({
   id: 'deferred',
 
-  beforeInit: function(chart, options) {
+  defaults: {
+    xOffset: 0,
+    yOffset: 0,
+    delay: 0
+  },
+
+  beforeInit: function(chart, _, options) {
     chart[MODEL_KEY] = {
       options: options,
       appeared: false,
@@ -140,7 +141,7 @@ Chart.plugins.register({
     watch(chart);
   },
 
-  beforeDatasetsUpdate: function(chart, options) {
+  beforeDatasetsUpdate: function(chart, _, options) {
     var model = chart[MODEL_KEY];
     if (!model.loaded) {
       if (!model.appeared && !chartInViewport(chart)) {
