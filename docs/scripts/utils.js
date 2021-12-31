@@ -25,7 +25,7 @@ export var COLORS = [
   '#606060',
 ];
 
-// Adapted from http://indiegamr.com/generate-repeatable-random-numbers-in-js/
+// Adapted from https://indiegamr.com/generate-repeatable-random-numbers-in-js/
 var _seed = Date.now();
 
 export function srand(seed) {

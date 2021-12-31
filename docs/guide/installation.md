@@ -27,14 +27,16 @@ https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1.1.2    // exact version
 https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1        // latest 1.x.x
 ```
 
-Read more about jsDeliver versioning on their [website](http://www.jsdelivr.com/).
+Read more about jsDeliver versioning on their [website](https://www.jsdelivr.com/).
 
 ## Download
 
-[![github](https://img.shields.io/github/release/chartjs/chartjs-plugin-deferred.svg?style=flat-square&maxAge=600)](https://github.com/chartjs/chartjs-plugin-deferred/releases/latest) [![github downloads](https://img.shields.io/github/downloads/chartjs/chartjs-plugin-deferred/total.svg?style=flat-square&maxAge=600)](http://www.somsubhra.com/github-release-stats/?username=chartjs&repository=chartjs-plugin-deferred)
+[![github](https://img.shields.io/github/release/chartjs/chartjs-plugin-deferred.svg?style=flat-square&maxAge=600)](https://github.com/chartjs/chartjs-plugin-deferred/releases/latest) [![github downloads](https://img.shields.io/github/downloads/chartjs/chartjs-plugin-deferred/total.svg?style=flat-square&maxAge=600)](https://somsubhra.github.io/github-release-stats/?username=chartjs&repository=chartjs-plugin-deferred)
 
 You can download the latest version of `chartjs-plugin-deferred` from the [GitHub releases](https://github.com/chartjs/chartjs-plugin-deferred/releases/latest):
 
 - `chartjs-plugin-deferred.js` (recommended for development)
 - `chartjs-plugin-deferred.min.js` (recommended for production)
-- `chartjs-plugin-deferred.zip` (contains `.js` and `.min.js` versions + samples)
+- `chartjs-plugin-deferred.esm.js`
+- `chartjs-plugin-deferred.tgz` (contains all builds)
+- `chartjs-plugin-deferred.zip` (contains all builds)
