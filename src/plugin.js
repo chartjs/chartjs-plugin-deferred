@@ -33,7 +33,7 @@ function chartInViewport(chart) {
   var options = chart[MODEL_KEY].options;
   var canvas = chart.canvas;
 
-  // http://stackoverflow.com/a/21696585
+  // https://stackoverflow.com/a/21696585
   if (!canvas || canvas.offsetParent === null) {
     return false;
   }
