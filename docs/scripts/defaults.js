@@ -1,7 +1,6 @@
 import {defaults} from 'chart.js';
-import {merge} from 'chart.js/helpers';
 
-merge(defaults.plugins, {
+defaults.set({
   legend: {
     display: false
   },
