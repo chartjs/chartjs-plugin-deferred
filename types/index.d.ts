@@ -3,10 +3,10 @@ import {Options} from './options'
 
 declare module 'chart.js' {
   interface PluginOptionsByType<TType extends ChartType> {
-    deffered?: Options
+    deferred?: Options
   }
 }
 
-declare const deffered: Plugin;
+declare const deferred: Plugin;
 
-export default deffered;
+export default deferred;
