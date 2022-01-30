@@ -17,8 +17,10 @@
     "build:dev": "rollup -c --watch",
     "docs": "npm run build && vuepress build docs --no-cache",
     "docs:dev": "npm run build && vuepress dev docs --no-cache",
-    "lint": "eslint . --ext .js",
-    "package": "npm run build && node scripts/create-packages.js"
+    "lint": "eslint . --ext .js,.ts --cache",
+    "package": "npm run build && node scripts/create-packages.js",
+    "test": "npm run test-types",
+    "test-types": "tsc -p types/test"
   },
   "devDependencies": {
     "@simonbrunel/vuepress-plugin-versions": "^0.2.0",
