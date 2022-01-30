@@ -1,7 +1,7 @@
-type percentageString = `${number}%`
+type PercentageString = `${number}%`
 
 export interface Options {
   delay?: number,
-  xOffset?: number | percentageString,
-  yOffset?: number | percentageString
+  xOffset?: number | PercentageString,
+  yOffset?: number | PercentageString
 }
