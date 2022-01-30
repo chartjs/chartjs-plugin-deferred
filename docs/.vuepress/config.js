@@ -90,7 +90,7 @@ module.exports = {
     sidebar: {
       '/guide/': [
         '',
-        'installation',
+        'getting-started',
         'options',
       ],
       '/samples/': [
