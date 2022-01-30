@@ -7,6 +7,6 @@ declare module 'chart.js' {
   }
 }
 
-declare const deferred: Plugin;
+declare const plugin: Plugin;
 
-export default deferred;
+export default plugin;
