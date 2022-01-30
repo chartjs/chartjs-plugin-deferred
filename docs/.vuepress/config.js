@@ -92,6 +92,7 @@ module.exports = {
         '',
         'getting-started',
         'options',
+        'migration'
       ],
       '/samples/': [
         'delay.md',

@@ -1,4 +1,4 @@
-# Getting started
+# Getting Started
 
 ## Installation
 
@@ -62,7 +62,7 @@ Once loaded, the plugin, available under the global `ChartDeferred` property, ne
 
 ```javascript
 import {Chart} from 'chart.js';
-import ChartDeferred from 'chartjs-plugin-datalabels';
+import ChartDeferred from 'chartjs-plugin-deferred';
 ```
 
 ## Registration

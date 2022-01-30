@@ -12,7 +12,7 @@ Requires [Chart.js](https://github.com/chartjs/Chart.js/releases) **3.x**
 
 ## Table of Contents
 
-* [Installation](installation.md)
+* [Getting Started](getting-started.md)
 * [Options](options.md)
 * [Samples](../samples)
 
