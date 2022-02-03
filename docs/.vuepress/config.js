@@ -90,8 +90,9 @@ module.exports = {
     sidebar: {
       '/guide/': [
         '',
-        'installation',
+        'getting-started',
         'options',
+        'migration'
       ],
       '/samples/': [
         'delay.md',

@@ -120,7 +120,7 @@ function unwatch(chart) {
   chart[MODEL_KEY].elements = [];
 }
 
-Chart.register({
+export default {
   id: 'deferred',
 
   defaults: {
@@ -180,4 +180,4 @@ Chart.register({
   destroy: function(chart) {
     unwatch(chart);
   }
-});
+};

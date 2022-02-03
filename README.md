@@ -11,7 +11,7 @@ Requires [Chart.js](https://github.com/chartjs/Chart.js/releases) **3.x**.
 ## Documentation
 
 - [Introduction](https://chartjs-plugin-deferred.netlify.app/)
-- [Installation](https://chartjs-plugin-deferred.netlify.app/installation.html)
+- [Getting Started](https://chartjs-plugin-deferred.netlify.app/getting-started.html)
 - [Options](https://chartjs-plugin-deferred.netlify.app/options.html)
 - [Samples](https://chartjs-plugin-deferred.netlify.app/samples/)
 
