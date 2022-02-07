@@ -1,6 +1,5 @@
 'use strict';
 
-import {Chart} from 'chart.js';
 import {requestAnimFrame, getStyle} from 'chart.js/helpers';
 
 var STUB_KEY = '$chartjs_deferred';
