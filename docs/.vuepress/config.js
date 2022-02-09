@@ -25,7 +25,7 @@ module.exports = {
     }],
     ['@simonbrunel/vuepress-plugin-versions', {
       filters: {
-        compat: (major) => +major < 2 ? 1 : 2,
+        compat: (major) => +major < 2 ? 2 : 3,
         slug: (v) => v.replace(/\./g, '_'),
         suffix: (v) => v ? ` (${v})` : '',
       },
