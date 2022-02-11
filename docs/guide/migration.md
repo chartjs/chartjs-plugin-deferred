@@ -11,7 +11,7 @@ Make sure to also read the [Chart.js v3 migration guide](https://www.chartjs.org
 As described in the [getting started](getting-started.md#integration), it's now required to manually register this plugin, either globally:
 
 ```js
-Chart.plugins.register(ChartDeferred);
+Chart.register(ChartDeferred);
 ```
 
 or locally:
