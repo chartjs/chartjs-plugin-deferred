@@ -25,8 +25,8 @@ bower install chartjs-plugin-deferred --save
 By default, `https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred` returns the latest (minified) version, however it's [**highly recommended**](https://www.jsdelivr.com/features) to always specify a version in order to avoid breaking changes. This can be achieved by appending `@{version}` to the url:
 
 ```sh
-https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1.1.2    // exact version
-https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@1        // latest 1.x.x
+https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@2.0.0    // exact version
+https://cdn.jsdelivr.net/npm/chartjs-plugin-deferred@2        // latest 2.x.x
 ```
 
 Read more about jsDeliver versioning on their [website](https://www.jsdelivr.com/).
